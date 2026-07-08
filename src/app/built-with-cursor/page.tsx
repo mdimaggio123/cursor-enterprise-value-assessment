@@ -36,8 +36,8 @@ const learnings = [
 const salesMotionUses = [
   { persona: "CFO", action: "Use the ROI model with conservative defaults and a productivity capture rate to align on assumptions before scale." },
   { persona: "CTO / VP Engineering", action: "Use the workflow demo to show how Plan Mode and Agent compress context gathering, boilerplate, tests, and debug loops." },
-  { persona: "CISO", action: "Use readiness scoring and MEDDPICC security blockers to align on SSO, privacy controls, model governance, and approved repos." },
-  { persona: "Sales leadership", action: "Use pilot plan structure and MEDDPICC+ account planning to track metrics, economic buyer, paper process, and expansion." },
+  { persona: "CISO", action: "Use readiness scoring to align on SSO, privacy controls, model governance, approved repositories, and security review requirements before expanding beyond the pilot." },
+  { persona: "Cross-Functional Alignment & Deal Execution", action: "Use the pilot plan structure and MEDDPICC+ account plan to connect technical validation to business metrics, economic buyer alignment, paper process, risk, and expansion path." },
 ];
 
 export default function BuiltWithCursorPage() {

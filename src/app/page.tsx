@@ -123,8 +123,11 @@ export default function HomePage() {
           <div className="rounded-lg border p-4">
             <p className="text-sm font-semibold">Stakeholder modules</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              CFO (ROI), CTO (workflow), CISO (readiness), sales leadership
-              (MEDDPICC and pilot plan).
+              Role-specific views that translate Cursor's enterprise impact
+              across the buying committee: ROI for the CFO, developer workflow
+              change for the CTO, security readiness for the CISO, pilot
+              planning for cross-functional alignment, and MEDDPICC for account
+              strategy, multi-threading, and deal execution.
             </p>
           </div>
           <div className="rounded-lg border p-4">

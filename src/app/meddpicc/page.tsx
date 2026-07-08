@@ -24,9 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import meddpiccData from "@/data/meddpicc.json";
-import talkTracks from "@/data/talk-tracks.json";
 import { CompetitiveFrame } from "@/components/sales/competitive-frame";
-import { AeTalkTrack } from "@/components/sales/ae-talk-track";
 import { cn, formatCurrency } from "@/lib/utils";
 
 type SectionContent = Record<string, string>;
@@ -449,7 +447,6 @@ export default function MeddpiccPage() {
       </Card>
 
       <CompetitiveFrame />
-      <AeTalkTrack tracks={talkTracks.meddpicc} />
     </div>
   );
 }
