@@ -25,6 +25,6 @@
     { "persona": "Developer Champion", "quote": "Plan Mode plus Agent gives me a reviewable path before code changes land. I stay in control of the diff." }
   ],
   "built": [
-    { "persona": "Hiring Team", "quote": "I built this to prove I can learn a technical product quickly and translate it into an enterprise sales motion." }
+    { "persona": "Enterprise buyer", "quote": "This artifact connects hands-on product learning with enterprise buyer conversations: ROI framing, governance readiness, pilot design, and multi-threaded deal execution." }
   ]
 }

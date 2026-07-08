@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Cursor Enterprise Pilot & ROI Command Center",
   description:
-    "Strategic enterprise AE artifact for Cursor adoption - ROI, readiness, pilot design, MEDDPICC, and workflow transformation.",
+    "Strategic enterprise sales artifact for Cursor adoption: ROI, readiness, pilot design, MEDDPICC, and workflow transformation.",
 };
 
 export default function RootLayout({

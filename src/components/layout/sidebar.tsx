@@ -68,9 +68,9 @@ export function Sidebar() {
 
       <div className="border-t p-4">
         <div className="rounded-lg bg-muted/50 p-3">
-          <p className="text-xs font-medium">Strategic AE Artifact</p>
+          <p className="text-xs font-medium">Enterprise sales artifact</p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Mock data only. Built to demonstrate enterprise sales judgment.
+            Mock data only. For discovery and pilot planning conversations.
           </p>
         </div>
       </div>

@@ -12,7 +12,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { AeTalkTrack } from "@/components/sales/ae-talk-track";
-import { HiringWalkthrough } from "@/components/sales/hiring-walkthrough";
+import { EnterpriseMotionWalkthrough } from "@/components/sales/enterprise-motion-walkthrough";
 import { KpiCard, StatGrid } from "@/components/dashboard/kpi-card";
 import {
   Card,
@@ -60,7 +60,7 @@ const modules = [
   },
   {
     title: "Built With Cursor",
-    description: "How a Strategic AE used Cursor to build this artifact",
+    description: "How Cursor was used to build this enterprise sales framework",
     href: "/built-with-cursor",
     icon: Shield,
   },
@@ -74,11 +74,10 @@ export default function HomePage() {
       {/* Hero */}
       <section className="rounded-xl border bg-gradient-to-br from-primary/5 via-card to-violet-500/5 p-8 shadow-card">
         <Badge variant="secondary" className="mb-4">
-          Strategic Enterprise AE Artifact
+          Enterprise Sales Artifact
         </Badge>
         <h1 className="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-          A Strategic Enterprise AE artifact for turning Cursor adoption into a
-          measurable enterprise rollout.
+          Turn Cursor adoption into a measurable enterprise rollout
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           Built with Cursor to model ROI, readiness, pilot design, MEDDPICC
@@ -87,7 +86,7 @@ export default function HomePage() {
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/built-with-cursor" className={cn(buttonVariants())}>
-            See How I Built This
+            Built With Cursor
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
           <Link href="/roi-calculator" className={cn(buttonVariants({ variant: "outline" }))}>
@@ -101,32 +100,31 @@ export default function HomePage() {
         <CardHeader>
           <CardTitle>What is this?</CardTitle>
           <CardDescription>
-            This is not a production product. It is a sales artifact built to
-            demonstrate product learning speed, enterprise judgment, and the
-            ability to connect developer workflow transformation to executive
-            value.
+            A sales artifact, not a production product. It connects hands-on
+            product learning with enterprise buyer conversations: ROI framing,
+            governance readiness, pilot design, and multi-threaded deal execution.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-lg border p-4">
-            <p className="text-sm font-semibold">Why I built it</p>
+            <p className="text-sm font-semibold">Purpose</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              To learn Cursor quickly and translate agentic development into an
-              enterprise buyer journey.
+              Translate agentic development into an enterprise buyer journey
+              with executive-ready artifacts.
             </p>
           </div>
           <div className="rounded-lg border p-4">
-            <p className="text-sm font-semibold">Why it matters for Cursor</p>
+            <p className="text-sm font-semibold">Enterprise motion</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Enterprise deals require ROI, governance, pilot discipline, and
-              multi-threaded executive alignment.
+              ROI, governance, pilot discipline, and multi-threaded executive
+              alignment in one command center.
             </p>
           </div>
           <div className="rounded-lg border p-4">
-            <p className="text-sm font-semibold">What to walk through</p>
+            <p className="text-sm font-semibold">Stakeholder modules</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              ROI with CFO lens, workflow with CTO lens, readiness with CISO
-              lens, MEDDPICC with sales leadership.
+              CFO (ROI), CTO (workflow), CISO (readiness), sales leadership
+              (MEDDPICC and pilot plan).
             </p>
           </div>
           <div className="rounded-lg border p-4">
@@ -196,7 +194,7 @@ export default function HomePage() {
 
       <AeTalkTrack tracks={talkTracks.dashboard} />
 
-      <HiringWalkthrough />
+      <EnterpriseMotionWalkthrough />
 
       {/* Link to full dashboard */}
       <Card className="border-primary/20">

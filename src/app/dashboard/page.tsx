@@ -71,7 +71,7 @@ export default function DashboardPage() {
       <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
         Illustrative mock data. Figures represent instrumented pilot signals and
         conservative modeled targets, not guaranteed outcomes. ROI uses the same
-        gross-vs-realized logic as the ROI Calculator (40% realization).
+        gross-vs-realized logic as the ROI Calculator (22% productivity capture rate).
       </div>
 
       <StatGrid>

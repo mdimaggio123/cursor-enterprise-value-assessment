@@ -156,7 +156,7 @@ export function calculateROI(inputs: ROIInputs): ROICalculationResult {
     },
     {
       label: "Realized productivity value",
-      formula: `${formatCurrency(grossProductivityValue)} x ${realizationFactorPercent}% realization`,
+      formula: `${formatCurrency(grossProductivityValue)} x ${realizationFactorPercent}% capture rate`,
       result: realizedProductivityValue,
       formatted: formatCurrency(realizedProductivityValue),
     },
@@ -197,7 +197,7 @@ export function calculateROI(inputs: ROIInputs): ROICalculationResult {
       rationale: "Validate 70% of projected time savings through dev surveys and time tracking",
     },
     {
-      name: "Realization Factor",
+      name: "Productivity capture rate",
       target: `>=${realizationFactorPercent}% of gross value`,
       baseline: "0%",
       rationale: "CFO-aligned metric: compare realized output to gross productivity potential",

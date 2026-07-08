@@ -1,4 +1,4 @@
-import { Video } from "lucide-react";
+import { Route } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -10,46 +10,46 @@ import {
 const steps = [
   {
     step: 1,
-    title: "What I built",
+    title: "Define the business case",
     detail:
-      "A Cursor-specific enterprise sales artifact with ROI modeling, readiness scoring, pilot design, MEDDPICC planning, and workflow transformation demos.",
+      "Model ROI with conservative assumptions, readiness scoring, and pilot success metrics tied to executive priorities.",
   },
   {
     step: 2,
-    title: "How I used Cursor to build it",
+    title: "Validate workflow impact",
     detail:
-      "Agent-assisted scaffolding, codebase context, plan-first iteration, component refinement, debugging, and deployment workflow - all as a non-engineer AE.",
+      "Compare traditional developer workflows against Cursor-assisted agentic workflows using Plan Mode, Agent, and codebase context.",
   },
   {
     step: 3,
-    title: "What it taught me about selling AI coding agents",
+    title: "Align governance early",
     detail:
-      "Enterprise buyers need governance, measurable pilots, and executive confidence - not just developer enthusiasm.",
+      "Surface SSO, privacy controls, model governance, and repo policy requirements before expanding beyond approved scope.",
   },
   {
     step: 4,
-    title: "How I would apply this in a Fortune 500 account",
+    title: "Run a bounded pilot",
     detail:
       "Land with a bounded pilot, align CTO and CISO early, instrument metrics with the CFO, and use MEDDPICC to drive a disciplined expansion path.",
   },
   {
     step: 5,
-    title: "What I would test in a real enterprise pilot",
+    title: "Instrument and expand",
     detail:
-      "Weekly active usage, PR cycle time, validated hours saved, security compliance, and developer satisfaction against pre-agreed baselines.",
+      "Track weekly active usage, PR cycle time, validated hours saved, security compliance, and developer satisfaction against pre-agreed baselines.",
   },
 ];
 
-export function HiringWalkthrough() {
+export function EnterpriseMotionWalkthrough() {
   return (
     <Card className="border-violet-200 bg-violet-50/50">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Video className="h-5 w-5 text-violet-600" />
-          Hiring Team Walkthrough (3-minute Loom outline)
+          <Route className="h-5 w-5 text-violet-600" />
+          Enterprise rollout playbook
         </CardTitle>
         <CardDescription>
-          A scripted path for demonstrating product learning speed and enterprise judgment.
+          A structured path from discovery through pilot design, governance alignment, and expansion.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">

@@ -191,12 +191,16 @@ export default function ROICalculatorPage() {
     <div>
       <PageHeader
         title="ROI Calculator"
-        description="CFO-defensible ROI model with gross vs realized productivity value. Conservative defaults. All formulas update live."
+        description="Illustrative model for pilot planning. Conservative defaults with gross vs realized productivity value. All formulas update live."
       />
 
       <Card className="mb-6 border-amber-200 bg-amber-50/50">
-        <CardContent className="p-4 text-sm text-muted-foreground">
-          {cfoNote}
+        <CardContent className="space-y-2 p-4 text-sm text-muted-foreground">
+          <p>{cfoNote}</p>
+          <p className="text-xs text-amber-900/80">
+            ROI multiple compares annual realized value to year-one license and
+            implementation cost. Treat as a planning range, not a forecast.
+          </p>
         </CardContent>
       </Card>
 
@@ -298,18 +302,19 @@ export default function ROICalculatorPage() {
               />
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <Label>Realization Factor</Label>
+                  <Label>Productivity Capture Rate</Label>
                   <span className="text-sm font-medium">{realizationFactor[0]}%</span>
                 </div>
                 <Slider
                   value={realizationFactor}
                   onValueChange={setRealizationFactor}
-                  min={20}
-                  max={70}
-                  step={5}
+                  min={10}
+                  max={40}
+                  step={1}
                 />
                 <p className="text-xs text-muted-foreground">
-                  CFO discount applied to gross productivity. Pilot validates this assumption.
+                  Share of gross productivity that converts to realized value.
+                  Pilot validates this assumption. Typical planning range: 15-30%.
                 </p>
               </div>
             </CardContent>
@@ -323,10 +328,11 @@ export default function ROICalculatorPage() {
             <CardContent className="space-y-5">
               <NumberInput
                 id="seatCost"
-                label="Cursor Cost per Seat"
+                label="Seat Cost (placeholder)"
                 value={cursorCostPerSeat}
                 onChange={setCursorCostPerSeat}
                 suffix="/yr"
+                hint="Illustrative assumption. Enterprise pricing is custom and negotiated."
               />
 
               <NumberInput

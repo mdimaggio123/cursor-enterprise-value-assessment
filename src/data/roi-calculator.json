@@ -1,15 +1,15 @@
 {
   "defaults": {
-    "developerCount": 850,
+    "developerCount": 200,
     "loadedEngineeringCost": 215000,
-    "hoursSavedPerWeek": 2.5,
+    "hoursSavedPerWeek": 2,
     "currentPrCycleDays": 4.2,
-    "expectedImprovementPercent": 12,
-    "onboardingReductionWeeks": 1,
-    "realizationFactorPercent": 40,
+    "expectedImprovementPercent": 10,
+    "onboardingReductionWeeks": 0.5,
+    "realizationFactorPercent": 22,
     "cursorCostPerSeat": 480,
-    "implementationCost": 75000,
-    "adoptionRate": 55,
+    "implementationCost": 50000,
+    "adoptionRate": 50,
     "workingHoursPerYear": 2080,
     "hoursPerWorkDay": 8,
     "workingDaysPerYear": 252
@@ -18,30 +18,30 @@
     {
       "id": "conservative",
       "label": "Conservative",
-      "hoursSavedPerWeek": 2.5,
-      "expectedImprovementPercent": 10,
-      "onboardingReductionWeeks": 1,
-      "adoptionRate": 50,
-      "realizationFactorPercent": 35
+      "hoursSavedPerWeek": 1.5,
+      "expectedImprovementPercent": 8,
+      "onboardingReductionWeeks": 0.5,
+      "adoptionRate": 40,
+      "realizationFactorPercent": 18
     },
     {
       "id": "expected",
       "label": "Expected",
-      "hoursSavedPerWeek": 4,
-      "expectedImprovementPercent": 15,
-      "onboardingReductionWeeks": 1.5,
-      "adoptionRate": 65,
-      "realizationFactorPercent": 45
+      "hoursSavedPerWeek": 2,
+      "expectedImprovementPercent": 10,
+      "onboardingReductionWeeks": 0.5,
+      "adoptionRate": 50,
+      "realizationFactorPercent": 22
     },
     {
       "id": "aggressive",
       "label": "Aggressive",
-      "hoursSavedPerWeek": 6,
-      "expectedImprovementPercent": 25,
-      "onboardingReductionWeeks": 2,
-      "adoptionRate": 80,
-      "realizationFactorPercent": 55
+      "hoursSavedPerWeek": 3,
+      "expectedImprovementPercent": 15,
+      "onboardingReductionWeeks": 1,
+      "adoptionRate": 60,
+      "realizationFactorPercent": 28
     }
   ],
-  "cfoNote": "Enterprise CFOs will discount productivity claims. This model intentionally separates gross productivity potential from realized value so the pilot can validate assumptions before scale."
+  "cfoNote": "Illustrative model for pilot planning only. Outputs are not guaranteed financial outcomes. Seat pricing shown is a placeholder assumption; enterprise agreements are custom. Use the pilot to validate productivity capture rate and realized value before scale."
 }
