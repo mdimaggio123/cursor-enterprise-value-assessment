@@ -1,25 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import {
-  Area,
-  AreaChart,
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-  Legend,
-} from "recharts";
-import {
-  Building2,
-  CheckCircle2,
-  Clock,
-  AlertTriangle,
-  Circle,
+  ArrowRight,
+  Calculator,
+  ClipboardCheck,
+  GitCompareArrows,
+  Rocket,
+  Target,
+  Shield,
+  TrendingUp,
 } from "lucide-react";
-import { PageHeader } from "@/components/layout/page-header";
+import { AeTalkTrack } from "@/components/sales/ae-talk-track";
+import { HiringWalkthrough } from "@/components/sales/hiring-walkthrough";
 import { KpiCard, StatGrid } from "@/components/dashboard/kpi-card";
 import {
   Card,
@@ -29,283 +22,199 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import talkTracks from "@/data/talk-tracks.json";
 import dashboardData from "@/data/dashboard.json";
-import { formatCurrency, formatNumber } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
-const statusIcon = {
-  complete: CheckCircle2,
-  in_progress: Clock,
-  pending: Circle,
-  open: AlertTriangle,
-  mitigated: CheckCircle2,
-  monitoring: Clock,
-};
+const modules = [
+  {
+    title: "ROI Calculator",
+    description: "Conservative, CFO-defensible productivity model with realization factor",
+    href: "/roi-calculator",
+    icon: Calculator,
+  },
+  {
+    title: "Readiness Assessment",
+    description: "8-category enterprise readiness with tiered next steps",
+    href: "/readiness",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "Pilot Plan Generator",
+    description: "Structured 90-day pilot with phases and success criteria",
+    href: "/pilot-plan",
+    icon: Rocket,
+  },
+  {
+    title: "MEDDPICC+ Builder",
+    description: "Account planning with security blockers and expansion hypothesis",
+    href: "/meddpicc",
+    icon: Target,
+  },
+  {
+    title: "Workflow Demo",
+    description: "Traditional vs Cursor-assisted agentic developer workflow",
+    href: "/workflow-demo",
+    icon: GitCompareArrows,
+  },
+  {
+    title: "Built With Cursor",
+    description: "How a Strategic AE used Cursor to build this artifact",
+    href: "/built-with-cursor",
+    icon: Shield,
+  },
+];
 
-const statusColor = {
-  complete: "text-success",
-  in_progress: "text-primary",
-  pending: "text-muted-foreground",
-  open: "text-warning",
-  mitigated: "text-success",
-  monitoring: "text-primary",
-};
-
-export default function DashboardPage() {
-  const { company, kpis, adoptionTrend, productivityByTeam, dealStages, riskItems, recentActivity } =
-    dashboardData;
+export default function HomePage() {
+  const { kpis } = dashboardData;
 
   return (
-    <div>
-      <PageHeader
-        title="Executive Dashboard"
-        description={`Enterprise adoption overview for ${company.name} � track pilot progress, ROI signals, and deal momentum.`}
-      >
-        <Badge variant="secondary" className="gap-1">
-          <Building2 className="h-3 w-3" />
-          {company.industry}
+    <div className="space-y-8">
+      {/* Hero */}
+      <section className="rounded-xl border bg-gradient-to-br from-primary/5 via-card to-violet-500/5 p-8 shadow-card">
+        <Badge variant="secondary" className="mb-4">
+          Strategic Enterprise AE Artifact
         </Badge>
-      </PageHeader>
+        <h1 className="max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
+          A Strategic Enterprise AE artifact for turning Cursor adoption into a
+          measurable enterprise rollout.
+        </h1>
+        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+          Built with Cursor to model ROI, readiness, pilot design, MEDDPICC
+          execution, workflow transformation, and executive value realization
+          for AI coding agents.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="/built-with-cursor" className={cn(buttonVariants())}>
+            See How I Built This
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+          <Link href="/roi-calculator" className={cn(buttonVariants({ variant: "outline" }))}>
+            Open ROI Model
+          </Link>
+        </div>
+      </section>
 
-      <StatGrid>
-        {kpis.map((kpi) => (
-          <KpiCard
-            key={kpi.id}
-            label={kpi.label}
-            value={kpi.value}
-            unit={kpi.unit}
-            change={kpi.change}
-            changeLabel={kpi.changeLabel}
-            trend={kpi.trend as "up" | "down"}
-          />
-        ))}
-      </StatGrid>
+      {/* Why this exists */}
+      <Card>
+        <CardHeader>
+          <CardTitle>What is this?</CardTitle>
+          <CardDescription>
+            This is not a production product. It is a sales artifact built to
+            demonstrate product learning speed, enterprise judgment, and the
+            ability to connect developer workflow transformation to executive
+            value.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-lg border p-4">
+            <p className="text-sm font-semibold">Why I built it</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              To learn Cursor quickly and translate agentic development into an
+              enterprise buyer journey.
+            </p>
+          </div>
+          <div className="rounded-lg border p-4">
+            <p className="text-sm font-semibold">Why it matters for Cursor</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Enterprise deals require ROI, governance, pilot discipline, and
+              multi-threaded executive alignment.
+            </p>
+          </div>
+          <div className="rounded-lg border p-4">
+            <p className="text-sm font-semibold">What to walk through</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              ROI with CFO lens, workflow with CTO lens, readiness with CISO
+              lens, MEDDPICC with sales leadership.
+            </p>
+          </div>
+          <div className="rounded-lg border p-4">
+            <p className="text-sm font-semibold">How to use it</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Mock data only. Edit assumptions live in discovery and pilot
+              planning conversations.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Pilot Adoption Trend</CardTitle>
-            <CardDescription>
-              Active users vs. target across the 6-month pilot
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={adoptionTrend}>
-                  <defs>
-                    <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="hsl(221, 83%, 53%)" stopOpacity={0.2} />
-                      <stop offset="95%" stopColor="hsl(221, 83%, 53%)" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                  <XAxis dataKey="month" className="text-xs" tick={{ fill: "hsl(220, 9%, 46%)" }} />
-                  <YAxis className="text-xs" tick={{ fill: "hsl(220, 9%, 46%)" }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "hsl(0, 0%, 100%)",
-                      border: "1px solid hsl(220, 13%, 91%)",
-                      borderRadius: "8px",
-                      fontSize: "12px",
-                    }}
-                  />
-                  <Legend />
-                  <Area
-                    type="monotone"
-                    dataKey="activeUsers"
-                    name="Active Users"
-                    stroke="hsl(221, 83%, 53%)"
-                    fill="url(#colorUsers)"
-                    strokeWidth={2}
-                  />
-                  <Area
-                    type="monotone"
-                    dataKey="target"
-                    name="Target"
-                    stroke="hsl(220, 9%, 46%)"
-                    fill="none"
-                    strokeDasharray="5 5"
-                    strokeWidth={1.5}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
+      {/* Sample KPIs from dashboard */}
+      <section>
+        <div className="mb-4 flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-semibold">Sample Enterprise Pilot Signals</h2>
+            <p className="text-sm text-muted-foreground">
+              Illustrative metrics from a mock financial services account
+            </p>
+          </div>
+          <Link href="/dashboard" className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}>
+            Full Dashboard <ArrowRight className="ml-1 h-4 w-4" />
+          </Link>
+        </div>
+        <StatGrid>
+          {kpis.map((kpi) => (
+            <KpiCard
+              key={kpi.id}
+              label={kpi.label}
+              value={kpi.value}
+              unit={kpi.unit}
+              change={kpi.change}
+              changeLabel={kpi.changeLabel}
+              trend={kpi.trend as "up" | "down"}
+            />
+          ))}
+        </StatGrid>
+      </section>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Company Profile</CardTitle>
-            <CardDescription>Account context</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Developers</span>
-              <span className="font-medium">{formatNumber(company.developers)}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Employees</span>
-              <span className="font-medium">{formatNumber(company.employees)}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">Annual Revenue</span>
-              <span className="font-medium">{formatCurrency(company.annualRevenue)}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">IT Budget</span>
-              <span className="font-medium">{formatCurrency(company.itBudget)}</span>
-            </div>
-            <div className="rounded-lg bg-muted/50 p-3">
-              <p className="text-xs text-muted-foreground">
-                Cursor addressable spend estimate
-              </p>
-              <p className="mt-1 text-lg font-semibold">
-                {formatCurrency(company.developers * 480)}
-                <span className="text-sm font-normal text-muted-foreground">/yr</span>
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="mt-6 grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Productivity by Team</CardTitle>
-            <CardDescription>Indexed productivity (baseline = 100)</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[280px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={productivityByTeam} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                  <XAxis type="number" domain={[80, 160]} tick={{ fill: "hsl(220, 9%, 46%)", fontSize: 12 }} />
-                  <YAxis type="category" dataKey="team" width={80} tick={{ fill: "hsl(220, 9%, 46%)", fontSize: 12 }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "hsl(0, 0%, 100%)",
-                      border: "1px solid hsl(220, 13%, 91%)",
-                      borderRadius: "8px",
-                      fontSize: "12px",
-                    }}
-                  />
-                  <Bar dataKey="before" name="Before" fill="hsl(220, 14%, 96%)" radius={[0, 4, 4, 0]} />
-                  <Bar dataKey="after" name="After Cursor" fill="hsl(221, 83%, 53%)" radius={[0, 4, 4, 0]} />
-                  <Legend />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Deal Progress</CardTitle>
-            <CardDescription>Enterprise adoption milestones</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {dealStages.map((stage, index) => {
-                const Icon = statusIcon[stage.status as keyof typeof statusIcon] ?? Circle;
-                const color = statusColor[stage.status as keyof typeof statusColor] ?? "text-muted-foreground";
-
-                return (
-                  <div key={stage.stage} className="flex gap-3">
-                    <div className="flex flex-col items-center">
-                      <Icon className={`h-5 w-5 ${color}`} />
-                      {index < dealStages.length - 1 && (
-                        <div className="mt-1 h-full w-px bg-border" />
-                      )}
+      {/* Module grid */}
+      <section>
+        <h2 className="mb-4 text-xl font-semibold">Command Center Modules</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {modules.map((mod) => {
+            const Icon = mod.icon;
+            return (
+              <Link key={mod.href} href={mod.href}>
+                <Card className="h-full transition-all hover:border-primary/40 hover:shadow-elevated">
+                  <CardHeader className="pb-2">
+                    <div className="flex items-center gap-2">
+                      <Icon className="h-5 w-5 text-primary" />
+                      <CardTitle className="text-base">{mod.title}</CardTitle>
                     </div>
-                    <div className="pb-4">
-                      <p className="text-sm font-medium">{stage.stage}</p>
-                      <p className="text-xs text-muted-foreground">{stage.owner}</p>
-                      <Badge
-                        variant={
-                          stage.status === "complete"
-                            ? "success"
-                            : stage.status === "in_progress"
-                              ? "default"
-                              : "secondary"
-                        }
-                        className="mt-1"
-                      >
-                        {stage.status.replace("_", " ")}
-                      </Badge>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="mt-6 grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Risk Register</CardTitle>
-            <CardDescription>Active risks and mitigations</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {riskItems.map((risk) => (
-                <div
-                  key={risk.id}
-                  className="rounded-lg border p-4 transition-colors hover:bg-muted/30"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="text-sm font-medium">{risk.title}</p>
-                    <Badge
-                      variant={
-                        risk.severity === "high"
-                          ? "destructive"
-                          : risk.severity === "medium"
-                            ? "warning"
-                            : "secondary"
-                      }
-                    >
-                      {risk.severity}
-                    </Badge>
-                  </div>
-                  <p className="mt-2 text-xs text-muted-foreground">
-                    {risk.mitigation}
-                  </p>
-                  <Badge variant="outline" className="mt-2">
-                    {risk.status}
-                  </Badge>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest pilot and deal updates</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {recentActivity.map((activity) => (
-                <div key={activity.id} className="flex gap-3 border-b pb-4 last:border-0 last:pb-0">
-                  <div className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-primary" />
-                  <div>
-                    <p className="text-sm">{activity.title}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {new Date(activity.timestamp).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      {mod.description}
                     </p>
-                  </div>
-                </div>
-              ))}
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      <AeTalkTrack tracks={talkTracks.dashboard} />
+
+      <HiringWalkthrough />
+
+      {/* Link to full dashboard */}
+      <Card className="border-primary/20">
+        <CardContent className="flex flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-3">
+            <TrendingUp className="h-8 w-8 text-primary" />
+            <div>
+              <p className="font-semibold">Executive Dashboard</p>
+              <p className="text-sm text-muted-foreground">
+                Full adoption trends, deal progress, risk register, and activity feed
+              </p>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+          <Link href="/dashboard" className={cn(buttonVariants())}>
+            Open Dashboard
+          </Link>
+        </CardContent>
+      </Card>
     </div>
   );
 }

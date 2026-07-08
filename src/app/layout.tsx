@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Cursor Enterprise Value Assessment",
+  title: "Cursor Enterprise Pilot & ROI Command Center",
   description:
-    "Enterprise buyer toolkit for evaluating Cursor adoption � ROI, readiness, pilot planning, and more.",
+    "Strategic enterprise AE artifact for Cursor adoption - ROI, readiness, pilot design, MEDDPICC, and workflow transformation.",
 };
 
 export default function RootLayout({

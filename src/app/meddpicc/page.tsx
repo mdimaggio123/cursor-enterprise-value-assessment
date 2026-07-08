@@ -24,6 +24,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import meddpiccData from "@/data/meddpicc.json";
+import talkTracks from "@/data/talk-tracks.json";
+import { CompetitiveFrame } from "@/components/sales/competitive-frame";
+import { AeTalkTrack } from "@/components/sales/ae-talk-track";
 import { cn, formatCurrency } from "@/lib/utils";
 
 type SectionContent = Record<string, string>;
@@ -124,7 +127,7 @@ export default function MeddpiccPage() {
     const body = sections
       .map(
         (s) =>
-          `## ${s.letter} � ${s.title}\n${s.subtitle}\n\n${content[s.id]}`
+          `## ${s.letter} - ${s.title}\n${s.subtitle}\n\n${content[s.id]}`
       )
       .join("\n\n---\n\n");
 
@@ -145,7 +148,7 @@ export default function MeddpiccPage() {
     <div>
       <PageHeader
         title="MEDDPICC+ Account Plan"
-        description={`Strategic enterprise account planning for Cursor AEs � ${description}.`}
+        description={`Strategic enterprise account planning for Cursor AEs - ${description}.`}
       >
         <div className="flex gap-2">
           <Button
@@ -173,7 +176,7 @@ export default function MeddpiccPage() {
         <CardHeader className="pb-3">
           <CardTitle className="text-base">Load Mock Account</CardTitle>
           <CardDescription>
-            Pre-built account plans for common enterprise verticals � select to
+            Pre-built account plans for common enterprise verticals - select to
             populate all fields
           </CardDescription>
         </CardHeader>
@@ -395,9 +398,9 @@ export default function MeddpiccPage() {
       {/* Plan overview grid */}
       <Card className="mt-6">
         <CardHeader>
-          <CardTitle>Plan Overview � {accountName}</CardTitle>
+          <CardTitle>Plan Overview - {accountName}</CardTitle>
           <CardDescription>
-            {industry} � {dealStage} � {seatCount.toLocaleString()} seats �{" "}
+            {industry} - {dealStage} - {seatCount.toLocaleString()} seats -{" "}
             {formatCurrency(acvPotential)} ACV
           </CardDescription>
         </CardHeader>
@@ -444,6 +447,9 @@ export default function MeddpiccPage() {
           </div>
         </CardContent>
       </Card>
+
+      <CompetitiveFrame />
+      <AeTalkTrack tracks={talkTracks.meddpicc} />
     </div>
   );
 }

@@ -10,34 +10,34 @@
   "kpis": [
     {
       "id": "adoption",
-      "label": "Pilot Adoption Rate",
-      "value": 78,
+      "label": "Weekly Active Usage (pilot)",
+      "value": 74,
       "unit": "%",
-      "change": 12,
+      "change": 9,
       "changeLabel": "vs. last month",
       "trend": "up"
     },
     {
-      "id": "productivity",
-      "label": "Dev Productivity Gain",
-      "value": 34,
+      "id": "prcycle",
+      "label": "PR Cycle Time Reduction",
+      "value": 13,
       "unit": "%",
-      "change": 8,
+      "change": 3,
       "changeLabel": "vs. baseline",
       "trend": "up"
     },
     {
       "id": "roi",
-      "label": "Projected Annual ROI",
-      "value": 4.2,
+      "label": "Modeled ROI (realized)",
+      "value": 1.8,
       "unit": "x",
-      "change": 0.6,
-      "changeLabel": "vs. initial model",
+      "change": 0.3,
+      "changeLabel": "at 40% realization",
       "trend": "up"
     },
     {
       "id": "timeToValue",
-      "label": "Time to Value",
+      "label": "Time to First Value",
       "value": 6,
       "unit": " weeks",
       "change": -2,
@@ -54,12 +54,12 @@
     { "month": "Jun", "activeUsers": 340, "target": 350 }
   ],
   "productivityByTeam": [
-    { "team": "Platform", "before": 100, "after": 142, "satisfaction": 4.6 },
-    { "team": "Frontend", "before": 100, "after": 138, "satisfaction": 4.4 },
-    { "team": "Backend", "before": 100, "after": 131, "satisfaction": 4.2 },
-    { "team": "Data Eng", "before": 100, "after": 145, "satisfaction": 4.7 },
-    { "team": "DevOps", "before": 100, "after": 128, "satisfaction": 4.1 },
-    { "team": "Mobile", "before": 100, "after": 135, "satisfaction": 4.3 }
+    { "team": "Platform", "before": 100, "after": 116, "satisfaction": 4.3 },
+    { "team": "Frontend", "before": 100, "after": 114, "satisfaction": 4.2 },
+    { "team": "Backend", "before": 100, "after": 110, "satisfaction": 4.0 },
+    { "team": "Data Eng", "before": 100, "after": 118, "satisfaction": 4.4 },
+    { "team": "DevOps", "before": 100, "after": 108, "satisfaction": 3.9 },
+    { "team": "Mobile", "before": 100, "after": 112, "satisfaction": 4.1 }
   ],
   "dealStages": [
     { "stage": "Champion Identified", "status": "complete", "owner": "Sarah Chen, VP Eng" },
@@ -107,13 +107,13 @@
     {
       "id": "a3",
       "type": "metric",
-      "title": "PR cycle time reduced 28% in pilot teams",
+      "title": "PR cycle time down 13% in pilot teams (instrumented via GitHub)",
       "timestamp": "2026-06-20T16:45:00Z"
     },
     {
       "id": "a4",
       "type": "feedback",
-      "title": "Champion survey: 4.5/5 developer satisfaction",
+      "title": "Champion survey: 4.1/5 developer satisfaction (n=42)",
       "timestamp": "2026-06-18T11:20:00Z"
     }
   ]

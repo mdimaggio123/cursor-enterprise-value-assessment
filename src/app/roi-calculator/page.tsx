@@ -10,6 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
+import { AeTalkTrack } from "@/components/sales/ae-talk-track";
 import { KpiCard, MetricValue, StatGrid } from "@/components/dashboard/kpi-card";
 import {
   Card,
@@ -24,6 +25,7 @@ import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import roiData from "@/data/roi-calculator.json";
+import talkTracks from "@/data/talk-tracks.json";
 import { calculateROI } from "@/lib/roi-calculations";
 import { formatCurrency, formatCurrencyCompact, formatNumber, formatNumberCompact } from "@/lib/utils";
 
@@ -68,7 +70,7 @@ function NumberInput({
 }
 
 export default function ROICalculatorPage() {
-  const { defaults, scenarios } = roiData;
+  const { defaults, scenarios, cfoNote } = roiData;
 
   const [developerCount, setDeveloperCount] = useState(defaults.developerCount);
   const [loadedEngineeringCost, setLoadedEngineeringCost] = useState(
@@ -93,6 +95,9 @@ export default function ROICalculatorPage() {
     defaults.implementationCost
   );
   const [adoptionRate, setAdoptionRate] = useState([defaults.adoptionRate]);
+  const [realizationFactor, setRealizationFactor] = useState([
+    defaults.realizationFactorPercent,
+  ]);
   const [pilotCohortPercent, setPilotCohortPercent] = useState([15]);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [workingHoursPerYear, setWorkingHoursPerYear] = useState(
@@ -114,6 +119,7 @@ export default function ROICalculatorPage() {
         currentPrCycleDays,
         expectedImprovementPercent: expectedImprovementPercent[0],
         onboardingReductionWeeks,
+        realizationFactorPercent: realizationFactor[0],
         cursorCostPerSeat,
         implementationCost,
         adoptionRate: adoptionRate[0],
@@ -129,6 +135,7 @@ export default function ROICalculatorPage() {
       currentPrCycleDays,
       expectedImprovementPercent,
       onboardingReductionWeeks,
+      realizationFactor,
       cursorCostPerSeat,
       implementationCost,
       adoptionRate,
@@ -146,6 +153,7 @@ export default function ROICalculatorPage() {
       setExpectedImprovementPercent([scenario.expectedImprovementPercent]);
       setOnboardingReductionWeeks(scenario.onboardingReductionWeeks);
       setAdoptionRate([scenario.adoptionRate]);
+      setRealizationFactor([scenario.realizationFactorPercent]);
     }
   };
 
@@ -154,8 +162,8 @@ export default function ROICalculatorPage() {
       label: "Weekly Time Savings",
       value: result.timeSavingsValue,
       percent:
-        result.annualProductivityValue > 0
-          ? (result.timeSavingsValue / result.annualProductivityValue) * 100
+        result.grossProductivityValue > 0
+          ? (result.timeSavingsValue / result.grossProductivityValue) * 100
           : 0,
       color: "bg-primary",
     },
@@ -163,8 +171,8 @@ export default function ROICalculatorPage() {
       label: "PR Cycle Improvement",
       value: result.prCycleValue,
       percent:
-        result.annualProductivityValue > 0
-          ? (result.prCycleValue / result.annualProductivityValue) * 100
+        result.grossProductivityValue > 0
+          ? (result.prCycleValue / result.grossProductivityValue) * 100
           : 0,
       color: "bg-violet-500",
     },
@@ -172,8 +180,8 @@ export default function ROICalculatorPage() {
       label: "Onboarding Acceleration",
       value: result.onboardingValue,
       percent:
-        result.annualProductivityValue > 0
-          ? (result.onboardingValue / result.annualProductivityValue) * 100
+        result.grossProductivityValue > 0
+          ? (result.onboardingValue / result.grossProductivityValue) * 100
           : 0,
       color: "bg-emerald-500",
     },
@@ -183,8 +191,14 @@ export default function ROICalculatorPage() {
     <div>
       <PageHeader
         title="ROI Calculator"
-        description="Model annual productivity value and payback with transparent, editable assumptions. All formulas update live as you change inputs."
+        description="CFO-defensible ROI model with gross vs realized productivity value. Conservative defaults. All formulas update live."
       />
+
+      <Card className="mb-6 border-amber-200 bg-amber-50/50">
+        <CardContent className="p-4 text-sm text-muted-foreground">
+          {cfoNote}
+        </CardContent>
+      </Card>
 
       <div className="mb-6 flex flex-wrap gap-2">
         {scenarios.map((scenario) => (
@@ -196,7 +210,7 @@ export default function ROICalculatorPage() {
           >
             {scenario.label}
             <Badge variant="secondary" className="ml-2">
-              {scenario.hoursSavedPerWeek} hrs/wk � {scenario.expectedImprovementPercent}%
+              {scenario.hoursSavedPerWeek} hrs/wk - {scenario.expectedImprovementPercent}%
             </Badge>
           </Button>
         ))}
@@ -230,7 +244,7 @@ export default function ROICalculatorPage() {
                 value={loadedEngineeringCost}
                 onChange={setLoadedEngineeringCost}
                 suffix="/yr"
-                hint="Fully loaded cost incl. benefits, overhead (salary � ~1.3)"
+                hint="Fully loaded cost incl. benefits, overhead (salary - ~1.3)"
               />
 
               <NumberInput
@@ -282,6 +296,22 @@ export default function ROICalculatorPage() {
                 suffix="weeks"
                 hint="Weeks of ramp time saved per developer during adoption"
               />
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <Label>Realization Factor</Label>
+                  <span className="text-sm font-medium">{realizationFactor[0]}%</span>
+                </div>
+                <Slider
+                  value={realizationFactor}
+                  onValueChange={setRealizationFactor}
+                  min={20}
+                  max={70}
+                  step={5}
+                />
+                <p className="text-xs text-muted-foreground">
+                  CFO discount applied to gross productivity. Pilot validates this assumption.
+                </p>
+              </div>
             </CardContent>
           </Card>
 
@@ -355,7 +385,7 @@ export default function ROICalculatorPage() {
                     label="Working Hours per Year"
                     value={workingHoursPerYear}
                     onChange={setWorkingHoursPerYear}
-                    hint="Default: 2,080 (52 wks � 40 hrs)"
+                    hint="Default: 2,080 (52 wks - 40 hrs)"
                   />
                   <NumberInput
                     id="workDayHrs"
@@ -380,9 +410,9 @@ export default function ROICalculatorPage() {
         <div className="space-y-6 lg:col-span-2">
           <StatGrid columns={4}>
             <KpiCard
-              label="Annual Productivity Value"
-              value={formatCurrencyCompact(result.annualProductivityValue)}
-              title={formatCurrency(result.annualProductivityValue)}
+              label="Realized Productivity Value"
+              value={formatCurrencyCompact(result.realizedProductivityValue)}
+              title={formatCurrency(result.realizedProductivityValue)}
               trend="up"
             />
             <KpiCard
@@ -413,7 +443,7 @@ export default function ROICalculatorPage() {
             <CardHeader>
               <CardTitle>Value Composition</CardTitle>
               <CardDescription>
-                How annual productivity value is derived from your inputs
+                How gross productivity value is derived before realization factor
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -455,7 +485,7 @@ export default function ROICalculatorPage() {
             <CardHeader>
               <CardTitle>Calculation Breakdown</CardTitle>
               <CardDescription>
-                Every step shown � edit inputs above to see formulas update live
+                Every step shown - edit inputs above to see formulas update live
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -539,7 +569,7 @@ export default function ROICalculatorPage() {
                 Suggested Pilot Success Metrics
               </CardTitle>
               <CardDescription>
-                Derived from your inputs � use these targets to validate assumptions
+                Derived from your inputs - use these targets to validate assumptions
                 during a {Math.round(developerCount * (pilotCohortPercent[0] / 100))}
                 -developer pilot
               </CardDescription>
@@ -585,6 +615,8 @@ export default function ROICalculatorPage() {
           </Card>
         </div>
       </div>
+
+      <AeTalkTrack tracks={talkTracks.roi} />
     </div>
   );
 }

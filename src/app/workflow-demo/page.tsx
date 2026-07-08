@@ -10,6 +10,7 @@ import {
   Play,
 } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
+import { AeTalkTrack } from "@/components/sales/ae-talk-track";
 import {
   Card,
   CardContent,
@@ -21,25 +22,23 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import workflowData from "@/data/workflow-demo.json";
+import talkTracks from "@/data/talk-tracks.json";
 import { cn } from "@/lib/utils";
 
 export default function WorkflowDemoPage() {
-  const { scenarios, workflows, summaryMetrics } = workflowData;
+  const { scenarios, workflows, summaryMetrics, summary } = workflowData;
   const [activeScenario, setActiveScenario] = useState(scenarios[0].id);
   const [view, setView] = useState<"before" | "after">("before");
   const [animatingStep, setAnimatingStep] = useState<number | null>(null);
 
   const workflow = workflows[activeScenario as keyof typeof workflows];
   const currentView = view === "before" ? workflow.before : workflow.after;
-  const timeReduction =
-    view === "after"
-      ? Math.round(
-          ((parseFloat(workflow.before.totalTime) -
-            parseFloat(workflow.after.totalTime)) /
-            parseFloat(workflow.before.totalTime)) *
-            100
-        )
-      : 0;
+  const timeReduction = Math.round(
+    ((parseFloat(workflow.before.totalTime) -
+      parseFloat(workflow.after.totalTime)) /
+      parseFloat(workflow.before.totalTime)) *
+      100
+  );
 
   const playAnimation = () => {
     setAnimatingStep(null);
@@ -53,13 +52,19 @@ export default function WorkflowDemoPage() {
   };
 
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
-        title="Developer Workflow Demo"
-        description="Compare before and after developer workflows � see how Cursor transforms common engineering tasks."
+        title="Cursor Workflow Demo"
+        description="Traditional developer workflow vs Cursor-assisted agentic workflow for enterprise feature delivery."
       />
 
-      <div className="mb-6 grid gap-4 sm:grid-cols-3">
+      <Card className="border-primary/20 bg-primary/5">
+        <CardContent className="p-5 text-sm leading-relaxed text-muted-foreground">
+          {summary}
+        </CardContent>
+      </Card>
+
+      <div className="grid gap-4 sm:grid-cols-3">
         <Card className="border-primary/20 bg-primary/5">
           <CardContent className="flex items-center gap-4 p-4">
             <Clock className="h-8 w-8 text-primary" />
@@ -100,32 +105,26 @@ export default function WorkflowDemoPage() {
 
         {scenarios.map((scenario) => (
           <TabsContent key={scenario.id} value={scenario.id}>
-            <p className="mb-4 text-sm text-muted-foreground">
-              {scenario.description}
-            </p>
+            <p className="mb-4 text-sm text-muted-foreground">{scenario.description}</p>
 
-            <div className="mb-6 flex items-center gap-4">
+            <div className="mb-6 flex flex-wrap items-center gap-4">
               <div className="inline-flex rounded-lg border p-1">
                 <button
                   type="button"
                   onClick={() => setView("before")}
                   className={cn(
                     "rounded-md px-4 py-2 text-sm font-medium transition-colors",
-                    view === "before"
-                      ? "bg-muted text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                    view === "before" ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  Before Cursor
+                  Traditional
                 </button>
                 <button
                   type="button"
                   onClick={() => setView("after")}
                   className={cn(
                     "rounded-md px-4 py-2 text-sm font-medium transition-colors",
-                    view === "after"
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                    view === "after" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   With Cursor
@@ -141,9 +140,7 @@ export default function WorkflowDemoPage() {
                 <Badge variant={view === "before" ? "secondary" : "success"}>
                   Total: {currentView.totalTime}
                 </Badge>
-                {view === "after" && (
-                  <Badge variant="success">-{timeReduction}% time</Badge>
-                )}
+                <Badge variant="success">-{timeReduction}% vs traditional</Badge>
               </div>
             </div>
 
@@ -151,50 +148,40 @@ export default function WorkflowDemoPage() {
               <Card className="lg:col-span-2">
                 <CardHeader>
                   <CardTitle>
-                    Workflow Steps � {view === "before" ? "Traditional" : "With Cursor"}
+                    {view === "before" ? workflow.before.label : workflow.after.label}
                   </CardTitle>
-                  <CardDescription>
-                    Step-by-step breakdown of the engineering task
-                  </CardDescription>
+                  <CardDescription>Step-by-step breakdown of the engineering task</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {currentView.steps.map((step, index) => (
+                <CardContent className="space-y-3">
+                  {currentView.steps.map((step, index) => (
+                    <div
+                      key={step.step}
+                      className={cn(
+                        "flex items-start gap-4 rounded-lg border p-4 transition-all duration-300",
+                        animatingStep === index && "border-primary bg-primary/5 shadow-elevated",
+                        animatingStep !== null && animatingStep < index && "opacity-40"
+                      )}
+                    >
                       <div
-                        key={step.step}
                         className={cn(
-                          "flex items-start gap-4 rounded-lg border p-4 transition-all duration-300",
-                          animatingStep === index && "border-primary bg-primary/5 shadow-elevated",
-                          animatingStep !== null &&
-                            animatingStep < index &&
-                            "opacity-40"
+                          "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold",
+                          view === "after" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
                         )}
                       >
-                        <div
-                          className={cn(
-                            "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold",
-                            view === "after"
-                              ? "bg-primary text-primary-foreground"
-                              : "bg-muted text-muted-foreground"
-                          )}
-                        >
-                          {step.step}
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-medium">{step.action}</p>
-                          <div className="mt-1 flex items-center gap-2">
-                            <Badge variant="outline">{step.tool}</Badge>
-                            <span className="text-xs text-muted-foreground">
-                              {step.duration}
-                            </span>
-                          </div>
-                        </div>
-                        {index < currentView.steps.length - 1 && (
-                          <ArrowRight className="hidden h-4 w-4 text-muted-foreground sm:block" />
-                        )}
+                        {step.step}
                       </div>
-                    ))}
-                  </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium">{step.action}</p>
+                        <div className="mt-1 flex items-center gap-2">
+                          <Badge variant="outline">{step.tool}</Badge>
+                          <span className="text-xs text-muted-foreground">{step.duration}</span>
+                        </div>
+                      </div>
+                      {index < currentView.steps.length - 1 && (
+                        <ArrowRight className="hidden h-4 w-4 text-muted-foreground sm:block" />
+                      )}
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
 
@@ -205,30 +192,18 @@ export default function WorkflowDemoPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <div className="mb-1 flex justify-between text-sm">
-                        <span className="text-muted-foreground">Before</span>
-                        <span className="font-medium">{workflow.before.totalTime}</span>
-                      </div>
+                      <p className="mb-1 text-sm text-muted-foreground">Traditional: {workflow.before.totalTime}</p>
                       <div className="h-3 rounded-full bg-muted">
                         <div className="h-full w-full rounded-full bg-muted-foreground/30" />
                       </div>
                     </div>
                     <div>
-                      <div className="mb-1 flex justify-between text-sm">
-                        <span className="text-muted-foreground">After</span>
-                        <span className="font-medium text-primary">
-                          {workflow.after.totalTime}
-                        </span>
-                      </div>
+                      <p className="mb-1 text-sm text-primary">Cursor-assisted: {workflow.after.totalTime}</p>
                       <div className="h-3 rounded-full bg-muted">
                         <div
-                          className="h-full rounded-full bg-primary transition-all"
+                          className="h-full rounded-full bg-primary"
                           style={{
-                            width: `${
-                              (parseFloat(workflow.after.totalTime) /
-                                parseFloat(workflow.before.totalTime)) *
-                              100
-                            }%`,
+                            width: `${(parseFloat(workflow.after.totalTime) / parseFloat(workflow.before.totalTime)) * 100}%`,
                           }}
                         />
                       </div>
@@ -244,10 +219,7 @@ export default function WorkflowDemoPage() {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-3">
-                      {(view === "before"
-                        ? workflow.before.painPoints
-                        : workflow.after.improvements
-                      ).map((item) => (
+                      {(view === "before" ? workflow.before.painPoints : workflow.after.improvements).map((item) => (
                         <li key={item} className="flex gap-2 text-sm">
                           {view === "before" ? (
                             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
@@ -265,6 +237,8 @@ export default function WorkflowDemoPage() {
           </TabsContent>
         ))}
       </Tabs>
+
+      <AeTalkTrack tracks={talkTracks.workflow} />
     </div>
   );
 }

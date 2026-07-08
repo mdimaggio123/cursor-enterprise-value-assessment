@@ -16,6 +16,7 @@ import {
   ListChecks,
 } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
+import { AeTalkTrack } from "@/components/sales/ae-talk-track";
 import {
   Card,
   CardContent,
@@ -27,6 +28,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import readinessData from "@/data/readiness-assessment.json";
+import talkTracks from "@/data/talk-tracks.json";
 import {
   getScoreTier,
   getTierColor,
@@ -132,7 +134,7 @@ export default function ReadinessPage() {
     <div>
       <PageHeader
         title="Enterprise Readiness Assessment"
-        description="Evaluate preparedness across 8 enterprise dimensions � security, admin controls, SSO, repo governance, model governance, change management, workflow fit, and executive sponsorship."
+        description="Evaluate preparedness across 8 enterprise dimensions - security, admin controls, SSO, repo governance, model governance, change management, workflow fit, and executive sponsorship."
       >
         <Button variant="outline" size="sm" onClick={resetAssessment}>
           Reset Assessment
@@ -228,7 +230,7 @@ export default function ReadinessPage() {
                       {cat.answered}/{cat.totalQuestions} answered
                       {cat.tier && (
                         <>
-                          {" � "}
+                          {" - "}
                           <span
                             className={cn(
                               cat.tier === "high" && "text-success",
@@ -413,7 +415,7 @@ export default function ReadinessPage() {
             <CardDescription>
               Weighted scores across all assessment dimensions
               {weakestCategories.length > 0 && !isComplete && (
-                <> � focus on categories marked &ldquo;Needs Attention&rdquo;</>
+                <> - focus on categories marked &ldquo;Needs Attention&rdquo;</>
               )}
             </CardDescription>
           </CardHeader>
@@ -455,7 +457,7 @@ export default function ReadinessPage() {
                     />
                     <p className="mt-1 text-xs text-muted-foreground">
                       {cat.answered}/{cat.totalQuestions} questions
-                      {cat.tier && ` � ${getTierLabel(cat.tier)}`}
+                      {cat.tier && ` - ${getTierLabel(cat.tier)}`}
                     </p>
                   </button>
                 );
@@ -468,7 +470,7 @@ export default function ReadinessPage() {
                   Priority Areas to Address
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  Your lowest-scoring categories � tackle these before scaling
+                  Your lowest-scoring categories - tackle these before scaling
                   beyond pilot
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -491,6 +493,8 @@ export default function ReadinessPage() {
           </CardContent>
         </Card>
       )}
+
+      <AeTalkTrack tracks={talkTracks.readiness} />
     </div>
   );
 }

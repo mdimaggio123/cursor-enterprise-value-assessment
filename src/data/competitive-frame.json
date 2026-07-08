@@ -1,0 +1,38 @@
+{
+  "title": "Cursor vs. incumbent AI coding assistant evaluation frame",
+  "subtitle": "Use these criteria and pilot hypotheses in competitive deals. Avoid unsupported claims. Validate in the pilot.",
+  "criteria": [
+    {
+      "name": "Agentic workflows, not just suggestions",
+      "hypothesis": "Hypothesis to validate: Does Cursor complete multi-file tasks with a reviewable plan, not just inline completions?"
+    },
+    {
+      "name": "Codebase context quality",
+      "hypothesis": "Hypothesis to validate: Does full-repo context reduce time spent searching and reading unrelated files?"
+    },
+    {
+      "name": "Developer experience and adoption",
+      "hypothesis": "Hypothesis to validate: Will weekly active usage exceed 70% without a mandate?"
+    },
+    {
+      "name": "Governance and enterprise controls",
+      "hypothesis": "Hypothesis to validate: Can admins enforce model policies, usage limits, and team structure at scale?"
+    },
+    {
+      "name": "Security and privacy posture",
+      "hypothesis": "Hypothesis to validate: Does Privacy Mode and enterprise documentation satisfy InfoSec for approved repos?"
+    },
+    {
+      "name": "Integration into existing workflows",
+      "hypothesis": "Hypothesis to validate: Does Cursor fit SSO, GitHub Enterprise, linters, and CI without breaking golden paths?"
+    },
+    {
+      "name": "Pilot success metrics",
+      "hypothesis": "Hypothesis to validate: Can we measure PR cycle time, hours saved, and satisfaction with agreed baselines?"
+    },
+    {
+      "name": "Expansion potential",
+      "hypothesis": "Hypothesis to validate: If the pilot team wins, can we replicate the playbook across adjacent engineering teams?"
+    }
+  ]
+}

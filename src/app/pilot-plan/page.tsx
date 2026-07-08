@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import pilotData from "@/data/pilot-plan.json";
+import talkTracks from "@/data/talk-tracks.json";
+import { AeTalkTrack } from "@/components/sales/ae-talk-track";
 
 export default function PilotPlanPage() {
   const { templates, phases, metrics } = pilotData;
@@ -202,7 +204,7 @@ export default function PilotPlanPage() {
                     <ul className="space-y-2">
                       {phase.objectives.map((obj) => (
                         <li key={obj} className="text-sm">
-                          � {obj}
+                          - {obj}
                         </li>
                       ))}
                     </ul>
@@ -214,7 +216,7 @@ export default function PilotPlanPage() {
                     <ul className="space-y-2">
                       {phase.deliverables.map((del) => (
                         <li key={del} className="text-sm">
-                          � {del}
+                          - {del}
                         </li>
                       ))}
                     </ul>
@@ -226,7 +228,7 @@ export default function PilotPlanPage() {
                     <ul className="space-y-2">
                       {phase.successCriteria.map((crit) => (
                         <li key={crit} className="text-sm">
-                          � {crit}
+                          - {crit}
                         </li>
                       ))}
                     </ul>
@@ -264,6 +266,8 @@ export default function PilotPlanPage() {
           </Card>
         </div>
       </div>
+
+      <AeTalkTrack tracks={talkTracks.pilot} />
     </div>
   );
 }

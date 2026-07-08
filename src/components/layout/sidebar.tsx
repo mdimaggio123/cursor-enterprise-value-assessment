@@ -10,16 +10,20 @@ import {
   Target,
   GitCompareArrows,
   Sparkles,
+  Code2,
+  TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { name: "Executive Dashboard", href: "/", icon: LayoutDashboard },
+  { name: "Command Center", href: "/", icon: LayoutDashboard },
+  { name: "Executive Dashboard", href: "/dashboard", icon: TrendingUp },
   { name: "ROI Calculator", href: "/roi-calculator", icon: Calculator },
   { name: "Readiness Assessment", href: "/readiness", icon: ClipboardCheck },
   { name: "Pilot Plan Generator", href: "/pilot-plan", icon: Rocket },
   { name: "MEDDPICC Builder", href: "/meddpicc", icon: Target },
   { name: "Workflow Demo", href: "/workflow-demo", icon: GitCompareArrows },
+  { name: "Built With Cursor", href: "/built-with-cursor", icon: Code2 },
 ];
 
 export function Sidebar() {
@@ -33,7 +37,7 @@ export function Sidebar() {
         </div>
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold">Cursor Enterprise</p>
-          <p className="truncate text-xs text-muted-foreground">Value Assessment</p>
+          <p className="truncate text-xs text-muted-foreground">Pilot & ROI Command Center</p>
         </div>
       </div>
 
@@ -64,12 +68,9 @@ export function Sidebar() {
 
       <div className="border-t p-4">
         <div className="rounded-lg bg-muted/50 p-3">
-          <p className="text-xs font-medium">Demo Account</p>
+          <p className="text-xs font-medium">Strategic AE Artifact</p>
           <p className="mt-1 text-xs text-muted-foreground">
-            Acme Financial Services
-          </p>
-          <p className="mt-2 text-xs text-muted-foreground">
-            All data is mock for evaluation purposes.
+            Mock data only. Built to demonstrate enterprise sales judgment.
           </p>
         </div>
       </div>

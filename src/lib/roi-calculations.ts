@@ -5,6 +5,7 @@ export interface ROIInputs {
   currentPrCycleDays: number;
   expectedImprovementPercent: number;
   onboardingReductionWeeks: number;
+  realizationFactorPercent: number;
   cursorCostPerSeat: number;
   implementationCost: number;
   adoptionRate: number;
@@ -32,7 +33,8 @@ export interface ROICalculationResult {
   prCycleValue: number;
   onboardingHoursSaved: number;
   onboardingValue: number;
-  annualProductivityValue: number;
+  grossProductivityValue: number;
+  realizedProductivityValue: number;
   annualLicenseCost: number;
   totalYearOneInvestment: number;
   netAnnualBenefit: number;
@@ -58,6 +60,7 @@ export function calculateROI(inputs: ROIInputs): ROICalculationResult {
     currentPrCycleDays,
     expectedImprovementPercent,
     onboardingReductionWeeks,
+    realizationFactorPercent,
     cursorCostPerSeat,
     implementationCost,
     adoptionRate,
@@ -69,115 +72,103 @@ export function calculateROI(inputs: ROIInputs): ROICalculationResult {
 
   const adoption = adoptionRate / 100;
   const improvement = expectedImprovementPercent / 100;
+  const realization = realizationFactorPercent / 100;
   const adoptedDevelopers = developerCount * adoption;
 
-  // Step 1: Hourly loaded cost
   const hourlyLoadedCost = loadedEngineeringCost / workingHoursPerYear;
-
-  // Step 2: Time savings from hours saved per developer per week
   const annualHoursSaved = adoptedDevelopers * hoursSavedPerWeek * 52;
   const timeSavingsValue = annualHoursSaved * hourlyLoadedCost;
 
-  // Step 3: PR cycle time improvement value
   const prsPerDevPerYear =
     currentPrCycleDays > 0 ? workingDaysPerYear / currentPrCycleDays : 0;
   const daysSavedPerPr = currentPrCycleDays * improvement;
   const annualPrDaysSaved = adoptedDevelopers * prsPerDevPerYear * daysSavedPerPr;
   const prCycleValue = annualPrDaysSaved * hoursPerWorkDay * hourlyLoadedCost;
 
-  // Step 4: Onboarding time reduction (one-time ramp acceleration, amortized in year 1)
   const onboardingHoursSaved =
     adoptedDevelopers * onboardingReductionWeeks * 40;
   const onboardingValue = onboardingHoursSaved * hourlyLoadedCost;
 
-  // Total annual productivity value
-  const annualProductivityValue =
+  const grossProductivityValue =
     timeSavingsValue + prCycleValue + onboardingValue;
+  const realizedProductivityValue = grossProductivityValue * realization;
 
-  // Investment
   const annualLicenseCost = adoptedDevelopers * cursorCostPerSeat;
   const totalYearOneInvestment = annualLicenseCost + implementationCost;
-  const netAnnualBenefit = annualProductivityValue - totalYearOneInvestment;
+  const netAnnualBenefit = realizedProductivityValue - totalYearOneInvestment;
 
   const paybackMonths =
-    annualProductivityValue > 0
-      ? (totalYearOneInvestment / annualProductivityValue) * 12
+    realizedProductivityValue > 0
+      ? (totalYearOneInvestment / realizedProductivityValue) * 12
       : Infinity;
 
   const roiMultiple =
     totalYearOneInvestment > 0
-      ? annualProductivityValue / totalYearOneInvestment
+      ? realizedProductivityValue / totalYearOneInvestment
       : 0;
 
   const targetPrCycleDays = currentPrCycleDays * (1 - improvement);
-
   const pilotCohort = Math.round(developerCount * (pilotCohortPercent / 100));
   const pilotScale = pilotCohort / developerCount;
 
   const steps: CalculationStep[] = [
     {
       label: "Hourly loaded cost",
-      formula: `$${loadedEngineeringCost.toLocaleString()} � ${workingHoursPerYear.toLocaleString()} hrs`,
+      formula: `$${loadedEngineeringCost.toLocaleString()} / ${workingHoursPerYear.toLocaleString()} hrs`,
       result: hourlyLoadedCost,
       formatted: `$${hourlyLoadedCost.toFixed(2)}/hr`,
     },
     {
       label: "Adopted developers",
-      formula: `${developerCount.toLocaleString()} � ${adoptionRate}% adoption`,
+      formula: `${developerCount.toLocaleString()} x ${adoptionRate}% adoption`,
       result: adoptedDevelopers,
       formatted: adoptedDevelopers.toLocaleString(undefined, { maximumFractionDigits: 0 }),
     },
     {
-      label: "Annual hours saved",
-      formula: `${adoptedDevelopers.toLocaleString(undefined, { maximumFractionDigits: 0 })} devs � ${hoursSavedPerWeek} hrs/wk � 52 wks`,
+      label: "Annual hours saved (gross)",
+      formula: `${adoptedDevelopers.toLocaleString(undefined, { maximumFractionDigits: 0 })} devs x ${hoursSavedPerWeek} hrs/wk x 52 wks`,
       result: annualHoursSaved,
       formatted: `${annualHoursSaved.toLocaleString(undefined, { maximumFractionDigits: 0 })} hrs`,
     },
     {
       label: "Time savings value",
-      formula: `${annualHoursSaved.toLocaleString(undefined, { maximumFractionDigits: 0 })} hrs � $${hourlyLoadedCost.toFixed(2)}/hr`,
+      formula: `${annualHoursSaved.toLocaleString(undefined, { maximumFractionDigits: 0 })} hrs x $${hourlyLoadedCost.toFixed(2)}/hr`,
       result: timeSavingsValue,
       formatted: formatCurrency(timeSavingsValue),
     },
     {
-      label: "PRs per developer per year",
-      formula: `${workingDaysPerYear} working days � ${currentPrCycleDays} day cycle`,
-      result: prsPerDevPerYear,
-      formatted: `${prsPerDevPerYear.toFixed(1)} PRs/dev/yr`,
-    },
-    {
-      label: "Days saved per PR",
-      formula: `${currentPrCycleDays} days � ${expectedImprovementPercent}% improvement`,
-      result: daysSavedPerPr,
-      formatted: `${daysSavedPerPr.toFixed(2)} days`,
-    },
-    {
       label: "PR cycle value",
-      formula: `${annualPrDaysSaved.toLocaleString(undefined, { maximumFractionDigits: 0 })} PR-days � ${hoursPerWorkDay} hrs � $${hourlyLoadedCost.toFixed(2)}/hr`,
+      formula: `${annualPrDaysSaved.toLocaleString(undefined, { maximumFractionDigits: 0 })} PR-days x ${hoursPerWorkDay} hrs x $${hourlyLoadedCost.toFixed(2)}/hr`,
       result: prCycleValue,
       formatted: formatCurrency(prCycleValue),
     },
     {
       label: "Onboarding value",
-      formula: `${adoptedDevelopers.toLocaleString(undefined, { maximumFractionDigits: 0 })} devs � ${onboardingReductionWeeks} wks � 40 hrs � $${hourlyLoadedCost.toFixed(2)}/hr`,
+      formula: `${adoptedDevelopers.toLocaleString(undefined, { maximumFractionDigits: 0 })} devs x ${onboardingReductionWeeks} wks x 40 hrs x $${hourlyLoadedCost.toFixed(2)}/hr`,
       result: onboardingValue,
       formatted: formatCurrency(onboardingValue),
     },
     {
-      label: "Annual productivity value",
+      label: "Gross productivity value",
       formula: "Time savings + PR cycle value + Onboarding value",
-      result: annualProductivityValue,
-      formatted: formatCurrency(annualProductivityValue),
+      result: grossProductivityValue,
+      formatted: formatCurrency(grossProductivityValue),
+    },
+    {
+      label: "Realized productivity value",
+      formula: `${formatCurrency(grossProductivityValue)} x ${realizationFactorPercent}% realization`,
+      result: realizedProductivityValue,
+      formatted: formatCurrency(realizedProductivityValue),
     },
     {
       label: "Year 1 investment",
-      formula: `${adoptedDevelopers.toLocaleString(undefined, { maximumFractionDigits: 0 })} seats � $${cursorCostPerSeat} + $${implementationCost.toLocaleString()} impl.`,
+      formula: `${adoptedDevelopers.toLocaleString(undefined, { maximumFractionDigits: 0 })} seats x $${cursorCostPerSeat} + $${implementationCost.toLocaleString()} impl.`,
       result: totalYearOneInvestment,
       formatted: formatCurrency(totalYearOneInvestment),
     },
     {
       label: "Payback period",
-      formula: `$${totalYearOneInvestment.toLocaleString(undefined, { maximumFractionDigits: 0 })} � ($${annualProductivityValue.toLocaleString(undefined, { maximumFractionDigits: 0 })} � 12 mo)`,
+      formula: `${formatCurrency(totalYearOneInvestment)} / (${formatCurrency(realizedProductivityValue)} / 12 mo)`,
       result: paybackMonths,
       formatted:
         paybackMonths === Infinity
@@ -189,39 +180,39 @@ export function calculateROI(inputs: ROIInputs): ROICalculationResult {
   const pilotMetrics: PilotMetric[] = [
     {
       name: "Weekly Active Usage",
-      target: `?${Math.round(pilotCohort * 0.75).toLocaleString()} developers`,
+      target: `>=${Math.round(pilotCohort * 0.7).toLocaleString()} developers`,
       baseline: "0 (pre-pilot)",
-      rationale: `75% of ${pilotCohort.toLocaleString()}-developer pilot cohort actively using Cursor weekly`,
+      rationale: `70% of ${pilotCohort.toLocaleString()}-developer pilot cohort actively using Cursor weekly`,
     },
     {
       name: "PR Cycle Time",
-      target: `?${targetPrCycleDays.toFixed(1)} days`,
+      target: `<=${targetPrCycleDays.toFixed(1)} days`,
       baseline: `${currentPrCycleDays} days`,
       rationale: `${expectedImprovementPercent}% reduction from current baseline`,
     },
     {
       name: "Hours Saved per Developer",
-      target: `?${(hoursSavedPerWeek * 0.8).toFixed(1)} hrs/week`,
+      target: `>=${(hoursSavedPerWeek * 0.7).toFixed(1)} hrs/week`,
       baseline: "0 hrs/week",
-      rationale: "Validate 80% of projected time savings through dev surveys + time tracking",
+      rationale: "Validate 70% of projected time savings through dev surveys and time tracking",
     },
     {
-      name: "Onboarding Ramp Time",
-      target: `${onboardingReductionWeeks} weeks faster`,
-      baseline: "Current ramp period",
-      rationale: "Measure time-to-first-PR for new pilot cohort members",
+      name: "Realization Factor",
+      target: `>=${realizationFactorPercent}% of gross value`,
+      baseline: "0%",
+      rationale: "CFO-aligned metric: compare realized output to gross productivity potential",
     },
     {
-      name: "90-Day Productivity Value",
-      target: formatCurrency(annualProductivityValue * (90 / 365) * pilotScale),
+      name: "90-Day Realized Value",
+      target: formatCurrency(realizedProductivityValue * (90 / 365) * pilotScale),
       baseline: "$0",
-      rationale: `Scaled projection for ${pilotCohort.toLocaleString()}-developer pilot over 90 days`,
+      rationale: `Scaled realized value for ${pilotCohort.toLocaleString()}-developer pilot over 90 days`,
     },
     {
       name: "Developer Satisfaction",
-      target: "?4.2 / 5.0",
+      target: ">=4.0 / 5.0",
       baseline: "3.6 / 5.0 (industry avg)",
-      rationale: "Post-pilot NPS/satisfaction survey across all pilot teams",
+      rationale: "Post-pilot satisfaction survey across all pilot teams",
     },
   ];
 
@@ -236,7 +227,8 @@ export function calculateROI(inputs: ROIInputs): ROICalculationResult {
     prCycleValue,
     onboardingHoursSaved,
     onboardingValue,
-    annualProductivityValue,
+    grossProductivityValue,
+    realizedProductivityValue,
     annualLicenseCost,
     totalYearOneInvestment,
     netAnnualBenefit,

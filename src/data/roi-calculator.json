@@ -2,13 +2,14 @@
   "defaults": {
     "developerCount": 850,
     "loadedEngineeringCost": 215000,
-    "hoursSavedPerWeek": 6.5,
+    "hoursSavedPerWeek": 2.5,
     "currentPrCycleDays": 4.2,
-    "expectedImprovementPercent": 25,
-    "onboardingReductionWeeks": 2,
+    "expectedImprovementPercent": 12,
+    "onboardingReductionWeeks": 1,
+    "realizationFactorPercent": 40,
     "cursorCostPerSeat": 480,
     "implementationCost": 75000,
-    "adoptionRate": 80,
+    "adoptionRate": 55,
     "workingHoursPerYear": 2080,
     "hoursPerWorkDay": 8,
     "workingDaysPerYear": 252
@@ -17,52 +18,30 @@
     {
       "id": "conservative",
       "label": "Conservative",
-      "hoursSavedPerWeek": 4,
-      "expectedImprovementPercent": 15,
+      "hoursSavedPerWeek": 2.5,
+      "expectedImprovementPercent": 10,
       "onboardingReductionWeeks": 1,
-      "adoptionRate": 60
+      "adoptionRate": 50,
+      "realizationFactorPercent": 35
     },
     {
       "id": "expected",
       "label": "Expected",
-      "hoursSavedPerWeek": 6.5,
-      "expectedImprovementPercent": 25,
-      "onboardingReductionWeeks": 2,
-      "adoptionRate": 80
+      "hoursSavedPerWeek": 4,
+      "expectedImprovementPercent": 15,
+      "onboardingReductionWeeks": 1.5,
+      "adoptionRate": 65,
+      "realizationFactorPercent": 45
     },
     {
       "id": "aggressive",
       "label": "Aggressive",
-      "hoursSavedPerWeek": 10,
-      "expectedImprovementPercent": 35,
-      "onboardingReductionWeeks": 3,
-      "adoptionRate": 95
+      "hoursSavedPerWeek": 6,
+      "expectedImprovementPercent": 25,
+      "onboardingReductionWeeks": 2,
+      "adoptionRate": 80,
+      "realizationFactorPercent": 55
     }
   ],
-  "pilotMetricTemplates": [
-    {
-      "id": "weekly-active",
-      "name": "Weekly Active Usage",
-      "formula": "adoptedDevs � 0.75",
-      "unit": "developers"
-    },
-    {
-      "id": "pr-cycle",
-      "name": "PR Cycle Time Target",
-      "formula": "currentPrCycleDays � (1 ? improvement%)",
-      "unit": "days"
-    },
-    {
-      "id": "hours-saved",
-      "name": "Validated Hours Saved / Dev / Week",
-      "formula": "hoursSavedPerWeek � 0.8",
-      "unit": "hours"
-    },
-    {
-      "id": "productivity-value",
-      "name": "Pilot Productivity Value (90 days)",
-      "formula": "annualValue � (90/365) � pilotScale",
-      "unit": "currency"
-    }
-  ]
+  "cfoNote": "Enterprise CFOs will discount productivity claims. This model intentionally separates gross productivity potential from realized value so the pilot can validate assumptions before scale."
 }

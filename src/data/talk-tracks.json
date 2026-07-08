@@ -1,0 +1,30 @@
+{
+  "dashboard": [
+    { "persona": "CTO / VP Engineering", "quote": "This dashboard is how I would track pilot momentum with an executive sponsor: adoption, productivity signals, deal stage, and risks in one view." },
+    { "persona": "CFO", "quote": "The goal is not to declare victory on day one. It is to show what evidence we are collecting to justify scale." },
+    { "persona": "CISO", "quote": "I use this view to make sure security and governance risks are visible before the pilot expands beyond approved repos." }
+  ],
+  "roi": [
+    { "persona": "CFO", "quote": "This model is not meant to prove a perfect ROI number on day one. It helps us align on assumptions, instrument the pilot, and define what evidence would justify scaling." },
+    { "persona": "CTO / VP Engineering", "quote": "The goal is not to replace developer judgment. It is to reduce time lost to context gathering, boilerplate, test creation, debugging, and review loops." }
+  ],
+  "readiness": [
+    { "persona": "CISO", "quote": "The pilot should start with approved repos, SSO, clear data boundaries, model governance, auditability, and rules for where agentic workflows are allowed." },
+    { "persona": "Platform Engineering", "quote": "The rollout needs to be manageable at scale, with repo policies, approved integrations, developer enablement, and a feedback loop for what breaks." }
+  ],
+  "pilot": [
+    { "persona": "CTO / VP Engineering", "quote": "A strong pilot needs business metrics, technical validation, champion development, and CISO alignment before we talk enterprise rollout." },
+    { "persona": "Developer Champion", "quote": "The best pilot will not feel like a top-down productivity mandate. It should show developers where Cursor helps them move faster without giving up control." }
+  ],
+  "meddpicc": [
+    { "persona": "Sales Leadership", "quote": "MEDDPICC keeps the deal honest: metrics, economic buyer, paper process, champion, and competition all need answers before we forecast with confidence." },
+    { "persona": "CFO", "quote": "I want to see identified pain tied to cost of inaction, not just feature enthusiasm." }
+  ],
+  "workflow": [
+    { "persona": "CTO / VP Engineering", "quote": "Cursor does not remove developer judgment. It compresses context gathering, boilerplate, test generation, debugging loops, and review prep." },
+    { "persona": "Developer Champion", "quote": "Plan Mode plus Agent gives me a reviewable path before code changes land. I stay in control of the diff." }
+  ],
+  "built": [
+    { "persona": "Hiring Team", "quote": "I built this to prove I can learn a technical product quickly and translate it into an enterprise sales motion." }
+  ]
+}

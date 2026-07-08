@@ -131,7 +131,7 @@
           "id": "sso-1",
           "text": "Is SSO (SAML/OIDC) a mandatory requirement for developer tools?",
           "options": [
-            { "label": "Mandatory � no exceptions", "score": 3 },
+            { "label": "Mandatory - no exceptions", "score": 3 },
             { "label": "Required for production, not pilot", "score": 2 },
             { "label": "Not required", "score": 1 }
           ]
@@ -267,9 +267,9 @@
       "description": "Champion programs, training plans, communication strategy, and resistance mitigation",
       "nextSteps": {
         "low": [
-          "Identify 5�8 developer champions across different teams and tech stacks",
+          "Identify 5-8 developer champions across different teams and tech stacks",
           "Create a change management plan with communication timeline and training schedule",
-          "Run a small proof-of-concept (10�20 devs) before expanding the pilot"
+          "Run a small proof-of-concept (10-20 devs) before expanding the pilot"
         ],
         "medium": [
           "Launch a champion program with weekly office hours and internal Slack/Teams channel",
@@ -320,7 +320,7 @@
       "nextSteps": {
         "low": [
           "Survey developers on current IDE usage (VS Code, JetBrains, etc.) and pain points",
-          "Run a 2-week workflow assessment with 5�10 developers across different stacks",
+          "Run a 2-week workflow assessment with 5-10 developers across different stacks",
           "Identify integration requirements (linters, formatters, CI/CD, monorepo tooling)"
         ],
         "medium": [
@@ -340,7 +340,7 @@
           "text": "What percentage of your developers use VS Code as their primary IDE?",
           "options": [
             { "label": ">70% VS Code", "score": 3 },
-            { "label": "Mixed IDE landscape (40�70%)", "score": 2 },
+            { "label": "Mixed IDE landscape (40-70%)", "score": 2 },
             { "label": "<40% VS Code (JetBrains/other dominant)", "score": 1 }
           ]
         },
@@ -358,7 +358,7 @@
           "text": "Are developers open to adopting AI-assisted workflows?",
           "options": [
             { "label": "Strong demand / already using AI tools", "score": 3 },
-            { "label": "Mixed � some eager, some skeptical", "score": 2 },
+            { "label": "Mixed - some eager, some skeptical", "score": 2 },
             { "label": "Significant resistance expected", "score": 1 }
           ]
         }
@@ -427,8 +427,8 @@
       "nextSteps": [
         "Secure a VP-level executive sponsor and schedule a CTO/CIO briefing",
         "Complete security and privacy policy review with your CISO team",
-        "Run a 2-week workflow assessment with 5�10 developers",
-        "Identify 3�5 champions and define a minimal viable pilot scope"
+        "Run a 2-week workflow assessment with 5-10 developers",
+        "Identify 3-5 champions and define a minimal viable pilot scope"
       ]
     },
     {
@@ -441,7 +441,7 @@
         "Close gaps in your two lowest-scoring categories (see category recommendations)",
         "Configure SSO and admin controls for the pilot cohort",
         "Establish repo governance rules and model usage policies",
-        "Launch a structured 60�90 day pilot with defined success metrics"
+        "Launch a structured 60-90 day pilot with defined success metrics"
       ]
     },
     {
@@ -451,7 +451,7 @@
       "color": "success",
       "recommendation": "Strong foundation for enterprise adoption. Proceed with a structured pilot and begin procurement conversations in parallel.",
       "nextSteps": [
-        "Launch a 90-day pilot with 10�15% of engineering org",
+        "Launch a 90-day pilot with 10-15% of engineering org",
         "Enable SSO/SCIM and admin policies before scaling beyond pilot",
         "Begin MSA/procurement process with legal and vendor management",
         "Establish quarterly business reviews with executive sponsor"

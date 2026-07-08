@@ -13,7 +13,7 @@ export function formatCurrency(value: number): string {
   }).format(value);
 }
 
-/** Compact currency for KPI cards — full value available via tooltip */
+/** Compact currency for KPI cards - full value available via tooltip */
 export function formatCurrencyCompact(value: number): string {
   const abs = Math.abs(value);
   if (abs >= 1_000_000_000) {
