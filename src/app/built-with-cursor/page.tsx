@@ -7,7 +7,6 @@ import {
   Search,
   Wrench,
 } from "lucide-react";
-import { AeTalkTrack } from "@/components/sales/ae-talk-track";
 import {
   Card,
   CardContent,
@@ -16,7 +15,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import talkTracks from "@/data/talk-tracks.json";
 
 const capabilities = [
   { title: "Agent for multi-file scaffolding", description: "Agent generated the Next.js app structure, pages, mock data, and component library from natural-language prompts, then edited multiple files in one pass.", icon: Bot },
@@ -115,8 +113,6 @@ export default function BuiltWithCursorPage() {
           ))}
         </CardContent>
       </Card>
-
-      <AeTalkTrack tracks={talkTracks.built} title="AE Talk Track" />
     </div>
   );
 }
