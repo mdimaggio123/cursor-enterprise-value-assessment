@@ -30,7 +30,7 @@ const steps = [
     step: 4,
     title: "How I would apply this in a Fortune 500 account",
     detail:
-      "Land with a bounded pilot, align CISO early, instrument metrics with the CFO, and use MEDDPICC to drive a disciplined expansion path.",
+      "Land with a bounded pilot, align CTO and CISO early, instrument metrics with the CFO, and use MEDDPICC to drive a disciplined expansion path.",
   },
   {
     step: 5,
