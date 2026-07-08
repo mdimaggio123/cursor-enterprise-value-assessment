@@ -1,0 +1,110 @@
+{
+  "templates": {
+    "durationOptions": [30, 60, 90],
+    "cohortSizes": [25, 50, 100, 200, 500],
+    "teamTypes": [
+      "Platform Engineering",
+      "Frontend",
+      "Backend",
+      "Full-Stack",
+      "Data Engineering",
+      "DevOps/SRE",
+      "Mobile",
+      "QA/Automation"
+    ]
+  },
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "Foundation",
+      "weekRange": "Weeks 1-2",
+      "objectives": [
+        "Establish baseline metrics (PR cycle time, commit frequency, bug rate)",
+        "Configure SSO and enterprise admin controls",
+        "Identify and onboard 5-8 developer champions",
+        "Deploy privacy mode and document data handling"
+      ],
+      "deliverables": [
+        "Baseline metrics report",
+        "Security sign-off checklist",
+        "Champion roster with team assignments"
+      ],
+      "successCriteria": [
+        "100% of pilot users authenticated via SSO",
+        "Baseline metrics captured for all pilot teams",
+        "Zero security policy violations"
+      ]
+    },
+    {
+      "id": "phase-2",
+      "name": "Activation",
+      "weekRange": "Weeks 3-6",
+      "objectives": [
+        "Roll out to initial pilot cohort",
+        "Weekly office hours and enablement sessions",
+        "Collect qualitative feedback via surveys",
+        "Track adoption and usage patterns"
+      ],
+      "deliverables": [
+        "Weekly adoption dashboard",
+        "Developer feedback synthesis",
+        "Use case documentation library"
+      ],
+      "successCriteria": [
+        ">70% weekly active usage among pilot cohort",
+        "At least 3 documented productivity wins per team",
+        "Developer satisfaction score >4.0/5"
+      ]
+    },
+    {
+      "id": "phase-3",
+      "name": "Validation",
+      "weekRange": "Weeks 7-10",
+      "objectives": [
+        "Measure productivity impact against baseline",
+        "Expand to secondary cohort if metrics positive",
+        "Prepare executive readout with ROI analysis",
+        "Document integration patterns and best practices"
+      ],
+      "deliverables": [
+        "ROI analysis report",
+        "Executive presentation deck",
+        "Enterprise rollout recommendation"
+      ],
+      "successCriteria": [
+        ">15% improvement in at least 2 DORA metrics",
+        "Positive ROI projection at 80%+ adoption",
+        "Executive sponsor approval to proceed"
+      ]
+    },
+    {
+      "id": "phase-4",
+      "name": "Scale Planning",
+      "weekRange": "Weeks 11-12",
+      "objectives": [
+        "Finalize enterprise agreement terms",
+        "Create rollout plan for remaining engineering org",
+        "Establish ongoing governance and support model",
+        "Define long-term success metrics and review cadence"
+      ],
+      "deliverables": [
+        "Enterprise rollout plan",
+        "Governance charter",
+        "Quarterly business review template"
+      ],
+      "successCriteria": [
+        "Procurement timeline agreed",
+        "Rollout plan approved by engineering leadership",
+        "Support model documented and resourced"
+      ]
+    }
+  ],
+  "metrics": [
+    { "id": "dora-deploy", "name": "Deployment Frequency", "baseline": "2.1/week", "target": "+25%" },
+    { "id": "dora-lead", "name": "Lead Time for Changes", "baseline": "4.2 days", "target": "-30%" },
+    { "id": "dora-mttr", "name": "Mean Time to Recovery", "baseline": "3.8 hours", "target": "-20%" },
+    { "id": "dora-cfr", "name": "Change Failure Rate", "baseline": "8.5%", "target": "-15%" },
+    { "id": "dev-satisfaction", "name": "Developer Satisfaction", "baseline": "3.6/5", "target": ">4.2/5" },
+    { "id": "adoption", "name": "Weekly Active Users", "baseline": "0%", "target": ">75%" }
+  ]
+}

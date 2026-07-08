@@ -1,0 +1,120 @@
+{
+  "company": {
+    "name": "Acme Financial Services",
+    "industry": "Financial Services",
+    "employees": 12500,
+    "developers": 850,
+    "annualRevenue": 4200000000,
+    "itBudget": 180000000
+  },
+  "kpis": [
+    {
+      "id": "adoption",
+      "label": "Pilot Adoption Rate",
+      "value": 78,
+      "unit": "%",
+      "change": 12,
+      "changeLabel": "vs. last month",
+      "trend": "up"
+    },
+    {
+      "id": "productivity",
+      "label": "Dev Productivity Gain",
+      "value": 34,
+      "unit": "%",
+      "change": 8,
+      "changeLabel": "vs. baseline",
+      "trend": "up"
+    },
+    {
+      "id": "roi",
+      "label": "Projected Annual ROI",
+      "value": 4.2,
+      "unit": "x",
+      "change": 0.6,
+      "changeLabel": "vs. initial model",
+      "trend": "up"
+    },
+    {
+      "id": "timeToValue",
+      "label": "Time to Value",
+      "value": 6,
+      "unit": " weeks",
+      "change": -2,
+      "changeLabel": "ahead of plan",
+      "trend": "up"
+    }
+  ],
+  "adoptionTrend": [
+    { "month": "Jan", "activeUsers": 45, "target": 50 },
+    { "month": "Feb", "activeUsers": 98, "target": 100 },
+    { "month": "Mar", "activeUsers": 156, "target": 150 },
+    { "month": "Apr", "activeUsers": 210, "target": 200 },
+    { "month": "May", "activeUsers": 285, "target": 275 },
+    { "month": "Jun", "activeUsers": 340, "target": 350 }
+  ],
+  "productivityByTeam": [
+    { "team": "Platform", "before": 100, "after": 142, "satisfaction": 4.6 },
+    { "team": "Frontend", "before": 100, "after": 138, "satisfaction": 4.4 },
+    { "team": "Backend", "before": 100, "after": 131, "satisfaction": 4.2 },
+    { "team": "Data Eng", "before": 100, "after": 145, "satisfaction": 4.7 },
+    { "team": "DevOps", "before": 100, "after": 128, "satisfaction": 4.1 },
+    { "team": "Mobile", "before": 100, "after": 135, "satisfaction": 4.3 }
+  ],
+  "dealStages": [
+    { "stage": "Champion Identified", "status": "complete", "owner": "Sarah Chen, VP Eng" },
+    { "stage": "Technical Validation", "status": "complete", "owner": "Platform Team" },
+    { "stage": "Security Review", "status": "in_progress", "owner": "CISO Office" },
+    { "stage": "Procurement", "status": "pending", "owner": "Vendor Management" },
+    { "stage": "Executive Sign-off", "status": "pending", "owner": "CTO" }
+  ],
+  "riskItems": [
+    {
+      "id": "r1",
+      "title": "Data residency requirements",
+      "severity": "medium",
+      "mitigation": "Enterprise privacy mode + VPC deployment option",
+      "status": "mitigated"
+    },
+    {
+      "id": "r2",
+      "title": "Change management resistance",
+      "severity": "low",
+      "mitigation": "Champion program + office hours",
+      "status": "monitoring"
+    },
+    {
+      "id": "r3",
+      "title": "IDE standardization conflict",
+      "severity": "medium",
+      "mitigation": "Cursor as approved option alongside VS Code",
+      "status": "open"
+    }
+  ],
+  "recentActivity": [
+    {
+      "id": "a1",
+      "type": "milestone",
+      "title": "Pilot cohort expanded to 340 developers",
+      "timestamp": "2026-06-28T14:30:00Z"
+    },
+    {
+      "id": "a2",
+      "type": "meeting",
+      "title": "Security review kickoff scheduled with CISO team",
+      "timestamp": "2026-06-25T09:00:00Z"
+    },
+    {
+      "id": "a3",
+      "type": "metric",
+      "title": "PR cycle time reduced 28% in pilot teams",
+      "timestamp": "2026-06-20T16:45:00Z"
+    },
+    {
+      "id": "a4",
+      "type": "feedback",
+      "title": "Champion survey: 4.5/5 developer satisfaction",
+      "timestamp": "2026-06-18T11:20:00Z"
+    }
+  ]
+}

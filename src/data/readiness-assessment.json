@@ -1,0 +1,478 @@
+{
+  "categories": [
+    {
+      "id": "security-privacy",
+      "name": "Security & Privacy",
+      "weight": 15,
+      "description": "Data handling, privacy mode requirements, compliance certifications, and code retention policies",
+      "nextSteps": {
+        "low": [
+          "Schedule a security review with your CISO team and share Cursor's SOC 2 Type II report",
+          "Document data classification requirements for code and define acceptable AI usage policies",
+          "Enable Privacy Mode in pilot configuration and validate zero data retention with your security team"
+        ],
+        "medium": [
+          "Complete vendor security questionnaire (VSA/SIG Lite) with Cursor's trust documentation",
+          "Define which repositories are in-scope for AI assistance based on data sensitivity tiers",
+          "Establish audit logging requirements and confirm admin dashboard visibility meets your needs"
+        ],
+        "high": [
+          "Fast-track enterprise agreement with DPA and custom security addendum if needed",
+          "Publish internal AI coding policy referencing Cursor's privacy controls as approved standard",
+          "Integrate Cursor usage into existing security monitoring and incident response playbooks"
+        ]
+      },
+      "questions": [
+        {
+          "id": "sp-1",
+          "text": "Does your organization require SOC 2 Type II or equivalent compliance from AI coding tool vendors?",
+          "options": [
+            { "label": "Yes, mandatory gate", "score": 3 },
+            { "label": "Preferred, case-by-case", "score": 2 },
+            { "label": "Not currently required", "score": 1 }
+          ]
+        },
+        {
+          "id": "sp-2",
+          "text": "What is your policy on code/data retention by third-party AI services?",
+          "options": [
+            { "label": "Zero retention required (Privacy Mode)", "score": 3 },
+            { "label": "Limited retention with DPA acceptable", "score": 2 },
+            { "label": "No formal policy yet", "score": 1 }
+          ]
+        },
+        {
+          "id": "sp-3",
+          "text": "Have you classified which codebases contain regulated or sensitive data (PII, PHI, PCI)?",
+          "options": [
+            { "label": "Yes, with tiered access controls", "score": 3 },
+            { "label": "Partially documented", "score": 2 },
+            { "label": "No formal classification", "score": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "admin-controls",
+      "name": "Admin Controls",
+      "weight": 12,
+      "description": "Centralized administration, usage policies, team management, and audit capabilities",
+      "nextSteps": {
+        "low": [
+          "Identify IT/admin owners who will manage the Cursor enterprise dashboard",
+          "Define team structure mapping (org units, cost centers, pilot cohorts)",
+          "Review Cursor admin docs for usage limits, model restrictions, and member management"
+        ],
+        "medium": [
+          "Configure admin roles and delegate team leads for pilot cohort management",
+          "Set usage policies and spending caps aligned with your AI governance framework",
+          "Establish monthly admin review cadence for usage analytics and policy compliance"
+        ],
+        "high": [
+          "Integrate Cursor admin reporting into existing IT service management workflows",
+          "Automate provisioning/deprovisioning via SCIM alongside admin dashboard policies",
+          "Define enterprise-wide configuration standards for model access and feature toggles"
+        ]
+      },
+      "questions": [
+        {
+          "id": "ac-1",
+          "text": "Do you require centralized admin control over AI tool configuration and usage?",
+          "options": [
+            { "label": "Yes, IT-managed with policies", "score": 3 },
+            { "label": "Team-level admin with oversight", "score": 2 },
+            { "label": "Developer self-service only", "score": 1 }
+          ]
+        },
+        {
+          "id": "ac-2",
+          "text": "Can you enforce usage limits, model restrictions, or feature toggles org-wide?",
+          "options": [
+            { "label": "Required capability", "score": 3 },
+            { "label": "Nice to have", "score": 2 },
+            { "label": "Not a concern", "score": 1 }
+          ]
+        },
+        {
+          "id": "ac-3",
+          "text": "Do you need audit logs of AI tool usage for compliance reporting?",
+          "options": [
+            { "label": "Yes, regular audit requirements", "score": 3 },
+            { "label": "Periodic review sufficient", "score": 2 },
+            { "label": "No audit requirements", "score": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sso-provisioning",
+      "name": "SSO & Provisioning",
+      "weight": 12,
+      "description": "Single sign-on integration, SCIM provisioning, and identity lifecycle management",
+      "nextSteps": {
+        "low": [
+          "Confirm your IdP (Okta, Azure AD, etc.) supports SAML/OIDC SSO with Cursor",
+          "Identify identity team contacts for SSO configuration and test user provisioning",
+          "Plan pilot with manual invites first, SSO as a phase-2 milestone"
+        ],
+        "medium": [
+          "Configure SSO integration in staging and validate group-to-team mapping",
+          "Test JIT provisioning flow with a small pilot group before broader rollout",
+          "Document offboarding process to revoke access when developers leave"
+        ],
+        "high": [
+          "Enable SCIM auto-provisioning tied to your IdP groups and cost centers",
+          "Integrate Cursor license allocation into existing software request workflows",
+          "Automate deprovisioning as part of standard HR offboarding runbooks"
+        ]
+      },
+      "questions": [
+        {
+          "id": "sso-1",
+          "text": "Is SSO (SAML/OIDC) a mandatory requirement for developer tools?",
+          "options": [
+            { "label": "Mandatory � no exceptions", "score": 3 },
+            { "label": "Required for production, not pilot", "score": 2 },
+            { "label": "Not required", "score": 1 }
+          ]
+        },
+        {
+          "id": "sso-2",
+          "text": "Do you need automated user provisioning/deprovisioning (SCIM)?",
+          "options": [
+            { "label": "Yes, tied to IdP groups", "score": 3 },
+            { "label": "Manual provisioning acceptable initially", "score": 2 },
+            { "label": "Not needed", "score": 1 }
+          ]
+        },
+        {
+          "id": "sso-3",
+          "text": "How mature is your identity and access management for dev tools?",
+          "options": [
+            { "label": "Centralized IdP with group-based access", "score": 3 },
+            { "label": "SSO available but inconsistent", "score": 2 },
+            { "label": "Per-tool credentials common", "score": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "repo-governance",
+      "name": "Repo Governance",
+      "weight": 13,
+      "description": "Source control policies, repository access, .cursorignore rules, and codebase indexing boundaries",
+      "nextSteps": {
+        "low": [
+          "Inventory repositories in scope for the pilot and tag by sensitivity level",
+          "Define .cursorignore patterns for secrets, credentials, and excluded directories",
+          "Align with platform team on GitHub/GitLab Enterprise integration requirements"
+        ],
+        "medium": [
+          "Establish repo allowlist/blocklist policy for AI-assisted development",
+          "Configure codebase indexing boundaries and validate no secrets are indexed",
+          "Create internal guidelines for which repos are approved for Cursor Agent mode"
+        ],
+        "high": [
+          "Integrate repo governance into existing code ownership and CODEOWNERS policies",
+          "Automate .cursorignore templates across monorepos and standard project scaffolds",
+          "Enable org-wide rules for repository access synced with your source control ACLs"
+        ]
+      },
+      "questions": [
+        {
+          "id": "rg-1",
+          "text": "Do you have policies governing which repositories can use AI coding assistance?",
+          "options": [
+            { "label": "Yes, with allowlist/blocklist", "score": 3 },
+            { "label": "Informal team-level decisions", "score": 2 },
+            { "label": "No policy exists", "score": 1 }
+          ]
+        },
+        {
+          "id": "rg-2",
+          "text": "How do you prevent AI tools from indexing secrets or sensitive files?",
+          "options": [
+            { "label": "Automated secret scanning + ignore rules", "score": 3 },
+            { "label": "Manual .gitignore/cursorignore", "score": 2 },
+            { "label": "Not currently addressed", "score": 1 }
+          ]
+        },
+        {
+          "id": "rg-3",
+          "text": "What source control platform does your engineering org primarily use?",
+          "options": [
+            { "label": "GitHub/GitLab Enterprise (cloud or self-hosted)", "score": 3 },
+            { "label": "Mixed platforms", "score": 2 },
+            { "label": "Legacy/on-prem only", "score": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "model-governance",
+      "name": "Model Governance",
+      "weight": 13,
+      "description": "AI model selection, usage policies, approved model lists, and third-party model risk management",
+      "nextSteps": {
+        "low": [
+          "Review Cursor's available models and your organization's AI model usage policy",
+          "Identify which model providers (OpenAI, Anthropic, etc.) are approved by your AI governance team",
+          "Define a pilot policy restricting model access to approved models only"
+        ],
+        "medium": [
+          "Configure admin-level model restrictions aligned with your approved vendor list",
+          "Document model selection guidelines for different task types (Agent vs. Tab completion)",
+          "Establish a process for requesting new model approvals through AI governance"
+        ],
+        "high": [
+          "Integrate Cursor model policies into enterprise AI governance framework",
+          "Set up monitoring for model usage patterns and cost allocation by team",
+          "Publish internal best practices for model selection by use case and sensitivity"
+        ]
+      },
+      "questions": [
+        {
+          "id": "mg-1",
+          "text": "Does your organization maintain an approved list of AI models/providers?",
+          "options": [
+            { "label": "Yes, formally governed", "score": 3 },
+            { "label": "Informal preferences", "score": 2 },
+            { "label": "No restrictions", "score": 1 }
+          ]
+        },
+        {
+          "id": "mg-2",
+          "text": "Can you restrict which AI models developers access org-wide?",
+          "options": [
+            { "label": "Required admin control", "score": 3 },
+            { "label": "Preferred but flexible", "score": 2 },
+            { "label": "Developer choice is fine", "score": 1 }
+          ]
+        },
+        {
+          "id": "mg-3",
+          "text": "Have you assessed third-party model risk (data handling, output liability)?",
+          "options": [
+            { "label": "Formal risk assessment completed", "score": 3 },
+            { "label": "In progress", "score": 2 },
+            { "label": "Not yet assessed", "score": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adoption-change",
+      "name": "Adoption & Change Management",
+      "weight": 13,
+      "description": "Champion programs, training plans, communication strategy, and resistance mitigation",
+      "nextSteps": {
+        "low": [
+          "Identify 5�8 developer champions across different teams and tech stacks",
+          "Create a change management plan with communication timeline and training schedule",
+          "Run a small proof-of-concept (10�20 devs) before expanding the pilot"
+        ],
+        "medium": [
+          "Launch a champion program with weekly office hours and internal Slack/Teams channel",
+          "Develop role-based enablement content (Agent workflows, Tab completion, codebase context)",
+          "Establish feedback loops: bi-weekly surveys and monthly champion syncs"
+        ],
+        "high": [
+          "Scale champion network to cover all major engineering teams and geographies",
+          "Integrate Cursor training into onboarding for all new engineering hires",
+          "Publish internal case studies and productivity metrics to drive organic adoption"
+        ]
+      },
+      "questions": [
+        {
+          "id": "ad-1",
+          "text": "Do you have a structured change management process for new developer tools?",
+          "options": [
+            { "label": "Formal program with milestones", "score": 3 },
+            { "label": "Ad hoc with some planning", "score": 2 },
+            { "label": "No formal process", "score": 1 }
+          ]
+        },
+        {
+          "id": "ad-2",
+          "text": "Have you identified developer champions to drive adoption?",
+          "options": [
+            { "label": "Champion program established", "score": 3 },
+            { "label": "Informal advocates identified", "score": 2 },
+            { "label": "None yet", "score": 1 }
+          ]
+        },
+        {
+          "id": "ad-3",
+          "text": "How do you plan to measure and communicate adoption progress?",
+          "options": [
+            { "label": "Dashboard + regular leadership updates", "score": 3 },
+            { "label": "Periodic check-ins", "score": 2 },
+            { "label": "No measurement plan", "score": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "workflow-fit",
+      "name": "Developer Workflow Fit",
+      "weight": 12,
+      "description": "IDE compatibility, existing toolchain integration, language support, and developer experience alignment",
+      "nextSteps": {
+        "low": [
+          "Survey developers on current IDE usage (VS Code, JetBrains, etc.) and pain points",
+          "Run a 2-week workflow assessment with 5�10 developers across different stacks",
+          "Identify integration requirements (linters, formatters, CI/CD, monorepo tooling)"
+        ],
+        "medium": [
+          "Validate Cursor compatibility with your top 3 language/framework combinations",
+          "Document migration path from current IDE for developers willing to switch",
+          "Test Agent mode workflows against your most common development tasks"
+        ],
+        "high": [
+          "Standardize Cursor as primary IDE with VS Code fallback policy",
+          "Create internal workflow playbooks for Agent, Tab, and codebase indexing patterns",
+          "Integrate Cursor into your developer platform golden paths and templates"
+        ]
+      },
+      "questions": [
+        {
+          "id": "wf-1",
+          "text": "What percentage of your developers use VS Code as their primary IDE?",
+          "options": [
+            { "label": ">70% VS Code", "score": 3 },
+            { "label": "Mixed IDE landscape (40�70%)", "score": 2 },
+            { "label": "<40% VS Code (JetBrains/other dominant)", "score": 1 }
+          ]
+        },
+        {
+          "id": "wf-2",
+          "text": "How well does your codebase structure support AI context (monorepos, docs, tests)?",
+          "options": [
+            { "label": "Well-documented with good test coverage", "score": 3 },
+            { "label": "Mixed quality across repos", "score": 2 },
+            { "label": "Legacy codebases with limited docs", "score": 1 }
+          ]
+        },
+        {
+          "id": "wf-3",
+          "text": "Are developers open to adopting AI-assisted workflows?",
+          "options": [
+            { "label": "Strong demand / already using AI tools", "score": 3 },
+            { "label": "Mixed � some eager, some skeptical", "score": 2 },
+            { "label": "Significant resistance expected", "score": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "executive-sponsorship",
+      "name": "Executive Sponsorship",
+      "weight": 10,
+      "description": "C-level support, budget authority, strategic alignment, and organizational buy-in",
+      "nextSteps": {
+        "low": [
+          "Build an executive business case with ROI projections and competitive landscape",
+          "Identify a VP-level sponsor in Engineering or IT to champion the initiative",
+          "Schedule introductory briefing with CTO/CIO on AI-assisted development trends"
+        ],
+        "medium": [
+          "Secure budget allocation for a structured 90-day pilot with defined success criteria",
+          "Align Cursor initiative with top 3 engineering priorities on the executive roadmap",
+          "Establish quarterly business reviews with executive sponsor to track progress"
+        ],
+        "high": [
+          "Position Cursor as a strategic initiative with board-level visibility on AI productivity",
+          "Integrate adoption targets into engineering OKRs and leadership scorecards",
+          "Fast-track enterprise procurement with executive-signed business justification"
+        ]
+      },
+      "questions": [
+        {
+          "id": "es-1",
+          "text": "Is there active executive sponsorship for AI-assisted development tools?",
+          "options": [
+            { "label": "CTO/CIO actively championing", "score": 3 },
+            { "label": "VP-level interest and support", "score": 2 },
+            { "label": "Bottom-up interest only", "score": 1 }
+          ]
+        },
+        {
+          "id": "es-2",
+          "text": "Is budget allocated or allocatable for an enterprise AI coding tool?",
+          "options": [
+            { "label": "Budget approved or reserved", "score": 3 },
+            { "label": "Budget discussions in progress", "score": 2 },
+            { "label": "No budget identified", "score": 1 }
+          ]
+        },
+        {
+          "id": "es-3",
+          "text": "Does this initiative align with stated engineering or business priorities?",
+          "options": [
+            { "label": "Top-3 engineering priority", "score": 3 },
+            { "label": "Aligned but not prioritized", "score": 2 },
+            { "label": "No clear alignment", "score": 1 }
+          ]
+        }
+      ]
+    }
+  ],
+  "readinessLevels": [
+    {
+      "minScore": 0,
+      "maxScore": 40,
+      "level": "Early Stage",
+      "color": "destructive",
+      "recommendation": "Significant groundwork needed. Prioritize executive sponsorship, security policy definition, and a small proof-of-concept before committing to a formal pilot.",
+      "nextSteps": [
+        "Secure a VP-level executive sponsor and schedule a CTO/CIO briefing",
+        "Complete security and privacy policy review with your CISO team",
+        "Run a 2-week workflow assessment with 5�10 developers",
+        "Identify 3�5 champions and define a minimal viable pilot scope"
+      ]
+    },
+    {
+      "minScore": 41,
+      "maxScore": 65,
+      "level": "Developing",
+      "color": "warning",
+      "recommendation": "Foundation is forming but gaps remain. Address your lowest-scoring categories before expanding beyond a controlled pilot.",
+      "nextSteps": [
+        "Close gaps in your two lowest-scoring categories (see category recommendations)",
+        "Configure SSO and admin controls for the pilot cohort",
+        "Establish repo governance rules and model usage policies",
+        "Launch a structured 60�90 day pilot with defined success metrics"
+      ]
+    },
+    {
+      "minScore": 66,
+      "maxScore": 85,
+      "level": "Ready",
+      "color": "success",
+      "recommendation": "Strong foundation for enterprise adoption. Proceed with a structured pilot and begin procurement conversations in parallel.",
+      "nextSteps": [
+        "Launch a 90-day pilot with 10�15% of engineering org",
+        "Enable SSO/SCIM and admin policies before scaling beyond pilot",
+        "Begin MSA/procurement process with legal and vendor management",
+        "Establish quarterly business reviews with executive sponsor"
+      ]
+    },
+    {
+      "minScore": 86,
+      "maxScore": 100,
+      "level": "Enterprise Ready",
+      "color": "success",
+      "recommendation": "Organization is well-prepared for enterprise rollout. Proceed with procurement, MSA finalization, and phased deployment planning.",
+      "nextSteps": [
+        "Finalize enterprise agreement and procurement timeline",
+        "Create phased rollout plan for remaining engineering teams",
+        "Integrate Cursor into developer onboarding and platform golden paths",
+        "Establish ongoing governance cadence and ROI tracking dashboard"
+      ]
+    }
+  ],
+  "scoreThresholds": {
+    "low": 50,
+    "high": 75
+  }
+}

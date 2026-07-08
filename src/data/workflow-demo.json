@@ -1,0 +1,127 @@
+{
+  "scenarios": [
+    {
+      "id": "feature-development",
+      "title": "Feature Development",
+      "description": "Building a new REST API endpoint with tests"
+    },
+    {
+      "id": "bug-fix",
+      "title": "Bug Investigation",
+      "description": "Diagnosing and fixing a production authentication issue"
+    },
+    {
+      "id": "refactor",
+      "title": "Code Refactoring",
+      "description": "Migrating a legacy module to TypeScript"
+    }
+  ],
+  "workflows": {
+    "feature-development": {
+      "before": {
+        "totalTime": "4.5 hours",
+        "steps": [
+          { "step": 1, "action": "Read requirements doc and ticket", "duration": "20 min", "tool": "Jira + Confluence" },
+          { "step": 2, "action": "Explore codebase to find patterns", "duration": "45 min", "tool": "VS Code + grep" },
+          { "step": 3, "action": "Write API endpoint boilerplate", "duration": "40 min", "tool": "VS Code" },
+          { "step": 4, "action": "Implement business logic", "duration": "60 min", "tool": "VS Code" },
+          { "step": 5, "action": "Write unit tests manually", "duration": "50 min", "tool": "VS Code" },
+          { "step": 6, "action": "Look up API docs and fix errors", "duration": "35 min", "tool": "Browser + Stack Overflow" },
+          { "step": 7, "action": "Create PR and address review comments", "duration": "30 min", "tool": "GitHub" }
+        ],
+        "painPoints": [
+          "Significant time spent navigating unfamiliar code",
+          "Manual boilerplate writing is repetitive",
+          "Context switching between docs, IDE, and browser"
+        ]
+      },
+      "after": {
+        "totalTime": "1.8 hours",
+        "steps": [
+          { "step": 1, "action": "Describe feature to Cursor Agent with ticket context", "duration": "5 min", "tool": "Cursor Agent" },
+          { "step": 2, "action": "Agent explores codebase and proposes implementation plan", "duration": "10 min", "tool": "Cursor Agent" },
+          { "step": 3, "action": "Review and refine generated endpoint + tests", "duration": "35 min", "tool": "Cursor Tab + Agent" },
+          { "step": 4, "action": "Inline fixes with codebase-aware suggestions", "duration": "25 min", "tool": "Cursor Tab" },
+          { "step": 5, "action": "Run tests, agent fixes failures iteratively", "duration": "15 min", "tool": "Cursor Agent" },
+          { "step": 6, "action": "Create PR with AI-generated description", "duration": "10 min", "tool": "Cursor + GitHub" }
+        ],
+        "improvements": [
+          "60% reduction in total development time",
+          "Codebase context eliminates manual exploration",
+          "Tests generated alongside implementation"
+        ]
+      }
+    },
+    "bug-fix": {
+      "before": {
+        "totalTime": "3.2 hours",
+        "steps": [
+          { "step": 1, "action": "Reproduce bug from ticket description", "duration": "30 min", "tool": "Local env + logs" },
+          { "step": 2, "action": "Trace through auth middleware chain", "duration": "55 min", "tool": "VS Code + debugger" },
+          { "step": 3, "action": "Search Slack and wikis for similar issues", "duration": "25 min", "tool": "Slack + Confluence" },
+          { "step": 4, "action": "Identify root cause in token validation", "duration": "40 min", "tool": "VS Code" },
+          { "step": 5, "action": "Write fix and regression test", "duration": "35 min", "tool": "VS Code" },
+          { "step": 6, "action": "Verify fix across environments", "duration": "25 min", "tool": "Terminal + CI" }
+        ],
+        "painPoints": [
+          "Long investigation time across distributed auth logic",
+          "Tribal knowledge required to navigate codebase",
+          "Manual regression test writing"
+        ]
+      },
+      "after": {
+        "totalTime": "1.1 hours",
+        "steps": [
+          { "step": 1, "action": "Paste error logs and ask Agent to diagnose", "duration": "5 min", "tool": "Cursor Agent" },
+          { "step": 2, "action": "Agent traces auth flow and identifies root cause", "duration": "15 min", "tool": "Cursor Agent" },
+          { "step": 3, "action": "Review proposed fix with inline diffs", "duration": "20 min", "tool": "Cursor Agent" },
+          { "step": 4, "action": "Agent generates regression test suite", "duration": "10 min", "tool": "Cursor Agent" },
+          { "step": 5, "action": "Verify fix, agent handles edge cases", "duration": "15 min", "tool": "Cursor Agent + CI" }
+        ],
+        "improvements": [
+          "66% reduction in resolution time",
+          "Agent understands full auth middleware chain instantly",
+          "Comprehensive regression tests generated automatically"
+        ]
+      }
+    },
+    "refactor": {
+      "before": {
+        "totalTime": "6.0 hours",
+        "steps": [
+          { "step": 1, "action": "Audit legacy JS module structure", "duration": "45 min", "tool": "VS Code" },
+          { "step": 2, "action": "Create TypeScript interfaces manually", "duration": "50 min", "tool": "VS Code" },
+          { "step": 3, "action": "Convert files one-by-one to TypeScript", "duration": "120 min", "tool": "VS Code" },
+          { "step": 4, "action": "Fix type errors across dependent files", "duration": "90 min", "tool": "VS Code + tsc" },
+          { "step": 5, "action": "Update imports across codebase", "duration": "40 min", "tool": "VS Code + grep" },
+          { "step": 6, "action": "Run full test suite and fix breakages", "duration": "35 min", "tool": "Terminal" }
+        ],
+        "painPoints": [
+          "Tedious manual type annotation",
+          "Cascading type errors across many files",
+          "High risk of missing dependent file updates"
+        ]
+      },
+      "after": {
+        "totalTime": "2.2 hours",
+        "steps": [
+          { "step": 1, "action": "Instruct Agent to migrate module to TypeScript", "duration": "5 min", "tool": "Cursor Agent" },
+          { "step": 2, "action": "Agent generates types from existing JS patterns", "duration": "20 min", "tool": "Cursor Agent" },
+          { "step": 3, "action": "Batch convert files with agent oversight", "duration": "45 min", "tool": "Cursor Agent" },
+          { "step": 4, "action": "Agent resolves type errors across dependents", "duration": "30 min", "tool": "Cursor Agent" },
+          { "step": 5, "action": "Review changes, run test suite", "duration": "25 min", "tool": "Cursor + Terminal" }
+        ],
+        "improvements": [
+          "63% reduction in migration time",
+          "Automatic dependent file updates",
+          "Consistent type patterns across module"
+        ]
+      }
+    }
+  },
+  "summaryMetrics": {
+    "averageTimeReduction": "63%",
+    "contextSwitchesEliminated": 4.2,
+    "developerSatisfactionDelta": 1.1
+  }
+}
